@@ -1,0 +1,104 @@
+code_complexity_features:
+- feature: FILE_CONTENTS
+  feature_group: source_taint
+  file_name: /tmp/tmpO2kTuq_ss_testcase/src/src/main/java/org/elasticsearch/index/service/InternalIndexService.java
+  function_name: createShard
+  line_number: '0'
+- feature: array
+  feature_group: data_type
+  file_name: /tmp/tmpO2kTuq_ss_testcase/src/src/main/java/org/elasticsearch/index/service/InternalIndexService.java
+  function_name: createShard
+  line_number: '0'
+- feature: index_alias_1
+  feature_group: data_flow
+  file_name: /tmp/tmpO2kTuq_ss_testcase/src/src/main/java/org/elasticsearch/index/service/InternalIndexService.java
+  function_name: createShard
+  line_number: '0'
+- feature: function_invocation_overload
+  feature_group: control_flow
+  file_name: /tmp/tmpO2kTuq_ss_testcase/src/src/main/java/org/elasticsearch/index/service/InternalIndexService.java
+  function_name: createShard
+  line_number: '0'
+description: "\tThis test takes in a value from a taint source.\n The value is truncated\
+  \ to an integer, and then used to generate\n a random number within a range.  If\
+  \ the converted integer value\n is negative, SecureRandom.nextInt(value) will throw\
+  \ a\n RuntimeException.\n"
+io_pair:
+  benigns:
+  - inputs:
+    - name: NONCONVECTIVE_MICROMETHOD
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/debadge_technonomic.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/debadge_technonomic.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '107'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: NONCONVECTIVE_MICROMETHOD
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/debadge_technonomic.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/debadge_technonomic.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '2147483647'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable defining test value.
+
+    '
+  exploits:
+  - inputs:
+    - name: NONCONVECTIVE_MICROMETHOD
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/debadge_technonomic.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/debadge_technonomic.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '2147483648'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: NONCONVECTIVE_MICROMETHOD
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/debadge_technonomic.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/debadge_technonomic.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '4147483648'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmpO2kTuq_ss_testcase/src/src/main/java/org/elasticsearch/index/service/InternalIndexService.java
+  function_name: chambermaidArctiid
+  line_number: '0'
+- entry_point_type: CROSSOVER_POINT
+  file_name: /tmp/tmpO2kTuq_ss_testcase/src/src/main/java/org/elasticsearch/index/service/InternalIndexService.java
+  function_name: chambermaidArctiid
+  line_number: '0'

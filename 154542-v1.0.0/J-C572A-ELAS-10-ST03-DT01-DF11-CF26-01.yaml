@@ -1,0 +1,127 @@
+code_complexity_features:
+- feature: SOCKET
+  feature_group: source_taint
+  file_name: /tmp/tmp1_LUbj_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: doStart
+  line_number: '0'
+- feature: array
+  feature_group: data_type
+  file_name: /tmp/tmp1_LUbj_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: doStart
+  line_number: '0'
+- feature: basic
+  feature_group: data_flow
+  file_name: /tmp/tmp1_LUbj_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: doStart
+  line_number: '0'
+- feature: function_invocation_overload
+  feature_group: control_flow
+  file_name: /tmp/tmp1_LUbj_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: doStart
+  line_number: '0'
+description: 'A file name is provided to the application.  This file is assumed to
+  be a binary payload with at least 4 bytes of data.  The first 4 bytes of data are
+  an encoded 32-bit Integer.  This value describes the length of the rest of the message.  If
+  the length is not eual to of less than the remainder of the message payload, a RuntimeException
+  will be raised. Because the caller does not correctly use the Thread API to spawn
+  a thread, the main thread will receive the exception and not be handled accordingly.
+
+  '
+io_pair:
+  benigns:
+  - inputs:
+    - address: ss-localhost
+      id: source
+      ordinal: '1'
+      port: '8887'
+      source: socket_input
+      stage: co_process
+      value: file.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - name: printf "%.8x" 10 | xxd -r -p > /opt/stonesoup/workspace/testData/file.bin
+        && printf "AAAAAAAAAA" >> /opt/stonesoup/workspace/testData/file.bin
+      ordinal: '2'
+      source: script_input
+      stage: pre_process
+  - inputs:
+    - address: ss-localhost
+      id: source
+      ordinal: '1'
+      port: '8887'
+      source: socket_input
+      stage: co_process
+      value: new.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - name: printf "%.8x" 24 | xxd -r -p > /opt/stonesoup/workspace/testData/new.bin
+        && printf "This message seems valid" >> /opt/stonesoup/workspace/testData/new.bin
+      ordinal: '2'
+      source: script_input
+      stage: pre_process
+  - inputs:
+    - address: ss-localhost
+      id: source
+      ordinal: '1'
+      port: '8887'
+      source: socket_input
+      stage: co_process
+      value: program.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - name: printf "%.8x" 636 | xxd -r -p > /opt/stonesoup/workspace/testData/program.bin
+        && printf "Wood exhibits its greatest strength in tension parallel to the
+        grain, and it is very uncommon in practice for a specimen to be pulled in
+        two lengthwise. This is due to the difficulty of making the end fastenings
+        secure enough for the full tensile strength to be brought into play before
+        the fastenings shear off longitudinally. This is not the case with metals,
+        and as a result they are used in almost all places where tensile strength
+        is particularly needed, even though the remainder of the structure, such as
+        sills, beams, joists, posts, and flooring, may be of wood. Thus in a wooden
+        truss bridge the tension members are steel rods." >> /opt/stonesoup/workspace/testData/program.bin
+      ordinal: '2'
+      source: script_input
+      stage: pre_process
+  description: 'Environment variable defining string value.
+
+    '
+  exploits:
+  - inputs:
+    - address: ss-localhost
+      id: source
+      ordinal: '1'
+      port: '8887'
+      source: socket_input
+      stage: co_process
+      value: message.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - name: printf "%.8x" 7 | xxd -r -p > /opt/stonesoup/workspace/testData/message.bin
+        && printf "POTATO" >> /opt/stonesoup/workspace/testData/message.bin
+      ordinal: '2'
+      source: script_input
+      stage: pre_process
+  - inputs:
+    - address: ss-localhost
+      id: source
+      ordinal: '1'
+      port: '8887'
+      source: socket_input
+      stage: co_process
+      value: message.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - name: printf "%.8x" 2048 | xxd -r -p > /opt/stonesoup/workspace/testData/message.bin
+        && printf "HAT" >> /opt/stonesoup/workspace/testData/message.bin
+      ordinal: '2'
+      source: script_input
+      stage: pre_process
+weakness_points:
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmp1_LUbj_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: run
+  line_number: '0'
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmp1_LUbj_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: mesoscutellarCorallinaceae
+  line_number: '0'

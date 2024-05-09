@@ -1,0 +1,121 @@
+code_complexity_features:
+- feature: FILE_CONTENTS
+  feature_group: source_taint
+  file_name: /tmp/tmpsfJCvU_ss_testcase/src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java
+  function_name: CustomConcurrentMergeScheduler
+  line_number: '0'
+- feature: void_pointer
+  feature_group: data_type
+  file_name: /tmp/tmpsfJCvU_ss_testcase/src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java
+  function_name: CustomConcurrentMergeScheduler
+  line_number: '0'
+- feature: var_arg_list
+  feature_group: data_flow
+  file_name: /tmp/tmpsfJCvU_ss_testcase/src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java
+  function_name: CustomConcurrentMergeScheduler
+  line_number: '0'
+- feature: sequence
+  feature_group: control_flow
+  file_name: /tmp/tmpsfJCvU_ss_testcase/src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java
+  function_name: megasporicPreterlabent
+  line_number: '0'
+description: 'This test takes a string, and reads through the string, printing out
+  each character with ASCII value greater than 48.  If it encounters a character with
+  ASCII value less than 48, it will fail to increment the loop counter, and loop forever.
+
+  '
+io_pair:
+  benigns:
+  - inputs:
+    - name: AQUILINE_CYCLORRHAPHA
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/hittitics_ethereal.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/hittitics_ethereal.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: AAA
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: AQUILINE_CYCLORRHAPHA
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/hittitics_ethereal.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/hittitics_ethereal.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: Hellowworld
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: AQUILINE_CYCLORRHAPHA
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/hittitics_ethereal.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/hittitics_ethereal.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: Goodbycruelworld
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable
+
+    '
+  exploits:
+  - inputs:
+    - name: AQUILINE_CYCLORRHAPHA
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/hittitics_ethereal.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/hittitics_ethereal.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: XX.XX.XX.XX
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: AQUILINE_CYCLORRHAPHA
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/hittitics_ethereal.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/hittitics_ethereal.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: -add
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: CROSSOVER_POINT
+  file_name: /tmp/tmpsfJCvU_ss_testcase/src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java
+  function_name: megasporicPreterlabent
+  line_number: '0'
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmpsfJCvU_ss_testcase/src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java
+  function_name: megasporicPreterlabent
+  line_number: '0'

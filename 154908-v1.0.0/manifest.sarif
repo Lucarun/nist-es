@@ -1,0 +1,112 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 154908,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "This weakness takes in an integer and string \"int string\" where the integer is the size of the array to sort for timing and the string contains the value that is acted upon by the treads, stored in a global static variable. A divide by zero error occurs when the string starts with 'A' and the array size is significantly large. In practice the benign sort values are <50 and exploit are >5000000 to achieve (essentially) guaranteed effects.\nMetadata\n - Base program: Elastic Search\n - Source Taint: ENVIRONMENT_VARIABLE\n - Data Type: SIMPLE\n - Data Flow: JAVA_GENERICS\n - Control Flow: CALLBACK",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C567A-ELAS-10-ST01-DT02-DF18-CF01-01.xml"
+          },
+          "length": 78770,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "fb08635117ab597f41d943d9b79615f5466d68c03832aedcf6736fa88ae3a347"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/tribe/TribeService.java"
+          },
+          "length": 24146,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "0d651dc83718016fc02f9cbf13644e3e811390aa2f2b3b14a7818a72347aa57e"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "567",
+              "name": "Unsynchronized Access to Shared Data in a Multithreaded Context"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-567",
+          "message": {
+            "text": "Unsynchronized Access to Shared Data in a Multithreaded Context."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/tribe/TribeService.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 236,
+                  "endLine": 241
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "567",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

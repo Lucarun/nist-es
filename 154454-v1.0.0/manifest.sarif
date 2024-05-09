@@ -1,0 +1,112 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 154454,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "This test takes a string. It locks a lock upon encountering the first '1' in the string, then unlocks the lock each time it subsequently encounters an '1'. If there are three or more '1' characters in the string, this will cause multiple unlocks and an exception.\nMetadata\n - Base program: Elastic Search\n - Source Taint: SOCKET\n - Data Type: SIMPLE\n - Data Flow: ADDRESS_AS_FUNCTION_RETURN_VALUE\n - Control Flow: INTERCLASS_2",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C765A-ELAS-08-ST03-DT02-DF06-CF05-01.xml"
+          },
+          "length": 72307,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "9d85f7c1d83c9c32c3fd805b4e0f6531e8557644edf12fa08c396715c110e0b0"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java"
+          },
+          "length": 16053,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "1a5e00080d1df54cd814472f683f550d1e6f326ebe6ca9a0abf6950fae3a2b80"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "765",
+              "name": "Multiple Unlocks of a Critical Resource"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-765",
+          "message": {
+            "text": "Multiple Unlocks of a Critical Resource."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 353,
+                  "endLine": 369
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "765",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

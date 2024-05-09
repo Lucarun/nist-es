@@ -1,0 +1,121 @@
+code_complexity_features:
+- feature: FILE_CONTENTS
+  feature_group: source_taint
+  file_name: /tmp/tmpIT7KCh_ss_testcase/src/src/main/java/org/elasticsearch/http/netty/NettyHttpChannel.java
+  function_name: NettyHttpChannel
+  line_number: '0'
+- feature: void_pointer
+  feature_group: data_type
+  file_name: /tmp/tmpIT7KCh_ss_testcase/src/src/main/java/org/elasticsearch/http/netty/NettyHttpChannel.java
+  function_name: NettyHttpChannel
+  line_number: '0'
+- feature: basic
+  feature_group: data_flow
+  file_name: /tmp/tmpIT7KCh_ss_testcase/src/src/main/java/org/elasticsearch/http/netty/NettyHttpChannel.java
+  function_name: NettyHttpChannel
+  line_number: '0'
+- feature: callback
+  feature_group: control_flow
+  file_name: /tmp/tmpIT7KCh_ss_testcase/src/src/main/java/org/elasticsearch/http/netty/NettyHttpChannel.java
+  function_name: NettyHttpChannel
+  line_number: '0'
+description: 'This test takes a string, and reads through the string, printing out
+  each character with ASCII value greater than 48.  If it encounters a character with
+  ASCII value less than 48, it will fail to increment the loop counter, and loop forever.
+
+  '
+io_pair:
+  benigns:
+  - inputs:
+    - name: ELECTROLOGIC_TETRACHLORO
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/raanan_hemidrachm.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/raanan_hemidrachm.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: AAA
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: ELECTROLOGIC_TETRACHLORO
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/raanan_hemidrachm.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/raanan_hemidrachm.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: Hellowworld
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: ELECTROLOGIC_TETRACHLORO
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/raanan_hemidrachm.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/raanan_hemidrachm.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: Goodbycruelworld
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable
+
+    '
+  exploits:
+  - inputs:
+    - name: ELECTROLOGIC_TETRACHLORO
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/raanan_hemidrachm.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/raanan_hemidrachm.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: XX.XX.XX.XX
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: ELECTROLOGIC_TETRACHLORO
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/raanan_hemidrachm.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/raanan_hemidrachm.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: -add
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmpIT7KCh_ss_testcase/src/src/main/java/org/elasticsearch/http/netty/NettyHttpChannel.java
+  function_name: transvolationPeripheral
+  line_number: '0'
+- entry_point_type: CROSSOVER_POINT
+  file_name: /tmp/tmpIT7KCh_ss_testcase/src/src/main/java/org/elasticsearch/http/netty/NettyHttpChannel.java
+  function_name: transvolationPeripheral
+  line_number: '0'

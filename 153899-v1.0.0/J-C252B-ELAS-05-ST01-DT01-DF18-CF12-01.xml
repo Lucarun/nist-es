@@ -1,0 +1,1152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project base_program="J-ELAS" language="JAVA" name="J-C252B-ELAS-05-ST01-DT01-DF18-CF12-01" targeted_architecture="ANY" targeted_os="LINUX" test_case_type="ALL" xmlns="urn:stonesoup:project">
+    <description>This test reads data from a sensitive file without checking
+ the return value, and then repeats the operation on a non-sensitive file,
+ then printing the second file. Technical Impact is information leakage.
+</description>
+    <additional_information>
+        <keyvalue key="kill_command">TRUE</keyvalue>
+        <keyvalue key="JAVA_MAIN">org.elasticsearch.bootstrap.Elasticsearch</keyvalue>
+        <keyvalue key="JAVA_CLASSPATH">$SS_TC_DEPS/java/elasticsearch/*:$SS_TC_ROOT/$SS_TC_INSTALL/*:$SS_TC_ROOT/$SS_TC_INSTALL/classes/*:$SS_TC_DEPS/java/stonesoup/lttng/lttng-stonesoup-0.1.jar</keyvalue>
+        <keyvalue key="algorithmic_variant_name">UNSPECIFIED</keyvalue>
+        <keyvalue key="root_cause">UNSPECIFIED</keyvalue>
+    </additional_information>
+    <structure install="install" iodata="testData" scoredata="testOutput" scripts="scripts" source="src"/>
+    <run_command>java $SS_JAVA_OPTS -Djava.library.path=$SS_TC_DEPS/lib64/ -cp &quot;$SS_JAVA_CLASSPATH&quot;</run_command>
+    <weakness generation_method="FAULT_INJECTED">
+        <variant cwe="CWE-252" name="CWE-252-B">
+            <crossover_point file_name="/tmp/tmpNU_QCv_ss_testcase/src/src/main/java/org/elasticsearch/index/cache/IndexCacheModule.java" line_number="0">
+                <method name="whissonVeilless"/>
+            </crossover_point>
+            <trigger_point file_name="/tmp/tmpNU_QCv_ss_testcase/src/src/main/java/org/elasticsearch/index/cache/IndexCacheModule.java" line_number="0">
+                <method name="whissonVeilless"/>
+            </trigger_point>
+        </variant>
+        <features>
+            <taint_source file_name="/tmp/tmpNU_QCv_ss_testcase/src/src/main/java/org/elasticsearch/index/cache/IndexCacheModule.java" line_number="0" type="ENVIRONMENT_VARIABLE">
+                <method name="configure"/>
+            </taint_source>
+            <data_type file_name="/tmp/tmpNU_QCv_ss_testcase/src/src/main/java/org/elasticsearch/index/cache/IndexCacheModule.java" line_number="0" type="ARRAY">
+                <method name="configure"/>
+            </data_type>
+            <data_flow file_name="/tmp/tmpNU_QCv_ss_testcase/src/src/main/java/org/elasticsearch/index/cache/IndexCacheModule.java" line_number="0" type="JAVA_GENERICS">
+                <method name="configure"/>
+            </data_flow>
+            <control_flow file_name="/tmp/tmpNU_QCv_ss_testcase/src/src/main/java/org/elasticsearch/index/cache/IndexCacheModule.java" line_number="0" type="INTERPROCEDURAL_1">
+                <method name="configure"/>
+            </control_flow>
+        </features>
+    </weakness>
+    <build_commands>
+        <command>env ANT_HOME=$SS_TC_DEPS/ant ant $SS_ANT_OPTS -Dstonesoup.database.postgres.required=no -Dstonesoup.hibernate.postgres.required=no -Dstonesoup.hibernate.mysql.required=no -Dstonesoup.database.mysql.required=no -Dstonesoup.socket.required=no -lib $SS_TC_DEPS/java/stonesoup/lttng/lttng-stonesoup-0.1.jar -Dstonesoup.socket.lib.dir=&quot;$SS_TC_DEPS/java/stonesoup/socket&quot; -Dstonesoup.hibernate.mysql.lib.dir=&quot;$SS_TC_DEPS/java/stonesoup/hibernate/mysql&quot; -Dstonesoup.hibernate.postgres.lib.dir=&quot;$SS_TC_DEPS/java/stonesoup/hibernate/postgres&quot; -Dstonesoup.database.mysql.lib.dir=&quot;$SS_TC_DEPS/java/stonesoup/database/mysql&quot; -Dstonesoup.database.postgres.lib.dir=&quot;$SS_TC_DEPS/java/stonesoup/database/postgres&quot;  -Dmaven.build.dir=$SS_TC_ROOT/$SS_TC_INSTALL -Dmaven.repo.local=&quot;$SS_TC_DEPS/java/elasticsearch&quot; -Dmaven.settings.offline=true -Dstonesoup.lttng.lib.dir=&quot;$SS_TC_DEPS/java/stonesoup/lttng&quot; -Dstonesoup.lttng.dummy.lib.dir=&quot;$SS_TC_DEPS/java/stonesoup/lttng-dummy&quot; package</command>
+    </build_commands>
+    <iopairs>
+        <iopair name="J-C252B-ELAS-05-ST01-DT01-DF18-CF12-01-GOOD-01" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>Add data
+Environment variables defining data file names
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env RADIOCHEMISTRY_COUNTRYWARD;\nenv SS_OTHER_FILE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="RADIOCHEMISTRY_COUNTRYWARD" type="USE_TEXT">sensitive.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="sensitive.txt" type="USE_TEXT">root:x:0:0:root:/root:/bin/bash</file>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_OTHER_FILE" type="USE_TEXT">other.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="other.txt" type="USE_TEXT">The quick brown fox jumps over the lazy dog.</file>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-01&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-01-CURL" type="USE_TEXT">curl -XPUT 'http://ss-localhost:9200/movies/movie/1' -d '{&quot;title&quot;:&quot;The Godfather&quot;,&quot;director&quot;:&quot;Francis Ford Coppola&quot;,&quot;year&quot;:1972}'</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_loBbzw7k3T" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-01-Default">
+                <formula name="GOOD-01-Default">GOOD-01 AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="GOOD-01">
+                    <actual encoding="STRING" input_id_ref="GOOD-01-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-01/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C252B-ELAS-05-ST01-DT01-DF18-CF12-01-GOOD-02" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>simple string query
+Environment variables defining data file names
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env RADIOCHEMISTRY_COUNTRYWARD;\nenv SS_OTHER_FILE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="RADIOCHEMISTRY_COUNTRYWARD" type="USE_TEXT">sensitive.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="sensitive.txt" type="USE_TEXT">sshd:x:105:65534::/var/run/sshd:/usr/sbin/nologin</file>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_OTHER_FILE" type="USE_TEXT">other.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="other.txt" type="USE_TEXT">Welcome to Linux Mint 14 Nadia (GNU/Linux 3.5.0-28-generic x86_64)
+
+Welcome to Linux Mint
+* Documentation:  http://www.linuxmint.com
+</file>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-02&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-02-CURL" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_search' -d '{&quot;query&quot;: {&quot;query_string&quot;: {&quot;query&quot;: &quot;kill&quot;}}}'</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_V3VWCPPhJv" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-02-Default">
+                <formula name="GOOD-02-Default">GOOD-02 AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="GOOD-02">
+                    <actual encoding="STRING" input_id_ref="GOOD-02-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-02/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C252B-ELAS-05-ST01-DT01-DF18-CF12-01-GOOD-03" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>get all data
+Environment variables defining data file names
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env RADIOCHEMISTRY_COUNTRYWARD;\nenv SS_OTHER_FILE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="RADIOCHEMISTRY_COUNTRYWARD" type="USE_TEXT">sensitive.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="sensitive.txt" type="USE_TEXT">root:x:0:0:root:/root:/bin/bash</file>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_OTHER_FILE" type="USE_TEXT">other.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="other.txt" type="USE_TEXT">The quick brown fox jumps over the lazy dog.</file>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-03&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-03-CURL" type="USE_TEXT">curl -XGET 'http://ss-localhost:9200/_search' -d '{ &quot;query&quot;: { &quot;matchAll&quot; : {} }}'</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_7vppgxFxpx" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-03-Default">
+                <formula name="GOOD-03-Default">GOOD-03 AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="GOOD-03">
+                    <actual encoding="STRING" input_id_ref="GOOD-03-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-03/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C252B-ELAS-05-ST01-DT01-DF18-CF12-01-GOOD-04" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>add data
+Environment variables defining data file names
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env RADIOCHEMISTRY_COUNTRYWARD;\nenv SS_OTHER_FILE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="RADIOCHEMISTRY_COUNTRYWARD" type="USE_TEXT">sensitive.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="sensitive.txt" type="USE_TEXT">sshd:x:105:65534::/var/run/sshd:/usr/sbin/nologin</file>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_OTHER_FILE" type="USE_TEXT">other.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="other.txt" type="USE_TEXT">Welcome to Linux Mint 14 Nadia (GNU/Linux 3.5.0-28-generic x86_64)
+
+Welcome to Linux Mint
+* Documentation:  http://www.linuxmint.com
+</file>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-04&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-04-CURL" type="USE_TEXT">curl -XPUT 'http://ss-localhost:9200/user/starfleet/40' -d '{ &quot;name&quot; : &quot;Picard&quot;, &quot;rank&quot; : &quot;Captain&quot; }'</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_f0r4lROp04" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-04-Default">
+                <formula name="GOOD-04-Default">OUTPUT AND (STATE-EXISTS AND STATE-HAS-CONTENT) AND (GLOBAL-EXISTS AND GLOBAL-HAS-CONTENT) AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="OUTPUT">
+                    <actual encoding="STRING" input_id_ref="GOOD-04-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-04/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SCRIPT" encoding="STRING" name="STATE-EXISTS" type="USE_TEXT">
+                    if [[ -a good-04/elasticsearch/nodes/0/indices/user/0/_state/state-2 ]]; then exit 0; else exit 1; fi;
+                </simple_check>
+                <simple_check check_type="SCRIPT" encoding="STRING" name="GLOBAL-EXISTS" type="USE_TEXT">
+                    if [[ -a good-04/elasticsearch/nodes/0/_state/global-4 ]]; then exit 0; else exit 1; fi;
+                </simple_check>
+                <simple_check check_type="SCRIPT" encoding="STRING" name="STATE-HAS-CONTENT" type="USE_TEXT">
+                    if [[ -s good-04/elasticsearch/nodes/0/indices/user/0/_state/state-2 ]]; then exit 0; else exit 1; fi;
+                </simple_check>
+                <simple_check check_type="SCRIPT" encoding="STRING" name="GLOBAL-HAS-CONTENT" type="USE_TEXT">
+                    if [[ -s good-04/elasticsearch/nodes/0/_state/global-4 ]]; then exit 0; else exit 1; fi;
+                </simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C252B-ELAS-05-ST01-DT01-DF18-CF12-01-GOOD-05" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>delete data
+Environment variables defining data file names
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env RADIOCHEMISTRY_COUNTRYWARD;\nenv SS_OTHER_FILE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="RADIOCHEMISTRY_COUNTRYWARD" type="USE_TEXT">sensitive.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="sensitive.txt" type="USE_TEXT">root:x:0:0:root:/root:/bin/bash</file>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_OTHER_FILE" type="USE_TEXT">other.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="other.txt" type="USE_TEXT">The quick brown fox jumps over the lazy dog.</file>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-05&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-05-CURL" type="USE_TEXT">curl -XDELETE 'http://ss-localhost:9200/movies/movie/1' -d '{ &quot;year&quot;: 1962&quot; }'</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_S74s8A3uG2" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-05-Default">
+                <formula name="GOOD-05-Default">OUTPUT AND (GLOBAL-EXISTS AND GLOBAL-HAS-CONTENT) AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="OUTPUT">
+                    <actual encoding="STRING" input_id_ref="GOOD-05-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-05/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SCRIPT" encoding="STRING" name="GLOBAL-EXISTS" type="USE_TEXT">
+                    if [[ -a good-05/elasticsearch/nodes/0/_state/global-5 ]]; then exit 0; else exit 1; fi;
+                </simple_check>
+                <simple_check check_type="SCRIPT" encoding="STRING" name="GLOBAL-HAS-CONTENT" type="USE_TEXT">
+                   if [[ -s good-05/elasticsearch/nodes/0/_state/global-5 ]]; then exit 0; else exit 1; fi;
+                </simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C252B-ELAS-05-ST01-DT01-DF18-CF12-01-GOOD-06" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>bulk add data
+Environment variables defining data file names
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env RADIOCHEMISTRY_COUNTRYWARD;\nenv SS_OTHER_FILE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="RADIOCHEMISTRY_COUNTRYWARD" type="USE_TEXT">sensitive.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="sensitive.txt" type="USE_TEXT">sshd:x:105:65534::/var/run/sshd:/usr/sbin/nologin</file>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_OTHER_FILE" type="USE_TEXT">other.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="other.txt" type="USE_TEXT">Welcome to Linux Mint 14 Nadia (GNU/Linux 3.5.0-28-generic x86_64)
+
+Welcome to Linux Mint
+* Documentation:  http://www.linuxmint.com
+</file>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-06&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-06-CURL" type="USE_TEXT">curl -XPUT localhost:9200/_bulk --data-binary @good-06/shakespeare.json</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_btTlRRhE4a" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-06-Default">
+                <formula name="GOOD-06-Default">HEAD AND TAIL AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="HEAD">
+                    <actual encoding="STRING" input_id_ref="GOOD-06-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-06/head.txt</expected>
+                </compare_check>
+                <compare_check check_type="CONTAINS" name="TAIL">
+                    <actual encoding="STRING" input_id_ref="GOOD-06-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-06/tail.txt</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C252B-ELAS-05-ST01-DT01-DF18-CF12-01-GOOD-07" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>filter without search query
+Environment variables defining data file names
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env RADIOCHEMISTRY_COUNTRYWARD;\nenv SS_OTHER_FILE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="RADIOCHEMISTRY_COUNTRYWARD" type="USE_TEXT">sensitive.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="sensitive.txt" type="USE_TEXT">root:x:0:0:root:/root:/bin/bash</file>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_OTHER_FILE" type="USE_TEXT">other.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="other.txt" type="USE_TEXT">The quick brown fox jumps over the lazy dog.</file>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-07&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-07-CURL" type="USE_TEXT">curl -XPOST &quot;http://localhost:9200/_search&quot; -d '{ &quot;query&quot;: { &quot;filtered&quot;: { &quot;query&quot;: { &quot;match_all&quot;: {} }, &quot;filter&quot;: {&quot;term&quot;: { &quot;year&quot;: 1962 }}}}}'</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_kcvWqbsNPF" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-07-Default">
+                <formula name="GOOD-07-Default">OUTPUT AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="OUTPUT">
+                    <actual encoding="STRING" input_id_ref="GOOD-07-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-07/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C252B-ELAS-05-ST01-DT01-DF18-CF12-01-GOOD-08" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>tokenize with snowball analyzer
+Environment variables defining data file names
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env RADIOCHEMISTRY_COUNTRYWARD;\nenv SS_OTHER_FILE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="RADIOCHEMISTRY_COUNTRYWARD" type="USE_TEXT">sensitive.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="sensitive.txt" type="USE_TEXT">sshd:x:105:65534::/var/run/sshd:/usr/sbin/nologin</file>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_OTHER_FILE" type="USE_TEXT">other.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="other.txt" type="USE_TEXT">Welcome to Linux Mint 14 Nadia (GNU/Linux 3.5.0-28-generic x86_64)
+
+Welcome to Linux Mint
+* Documentation:  http://www.linuxmint.com
+</file>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-08&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-08-LOAD" type="USE_TEXT">curl -XPUT localhost:9200/_bulk --data-binary @good-06/shakespeare.json</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-08-SEARCH" type="USE_TEXT">curl -XPOST http://ss-localhost:9200/_search?pretty=true -d'{&quot;query&quot;: {&quot;query_string&quot;: {&quot;query&quot;: &quot;WESTMORELAND&quot;}}, &quot;sort&quot;: &quot;_id&quot;}'</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_sYvLbtyeyO" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-08-Default">
+                <formula name="GOOD-08-Default">HEAD AND TAIL AND SEARCH AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="HEAD">
+                    <actual encoding="STRING" input_id_ref="GOOD-08-LOAD" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-08/head.txt</expected>
+                </compare_check>
+                <compare_check check_type="CONTAINS" name="TAIL">
+                    <actual encoding="STRING" input_id_ref="GOOD-08-LOAD" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-08/tail.txt</expected>
+                </compare_check>
+                <compare_check check_type="CONTAINS" name="SEARCH">
+                    <actual encoding="STRING" input_id_ref="GOOD-08-SEARCH" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-08/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C252B-ELAS-05-ST01-DT01-DF18-CF12-01-GOOD-09" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>list indicies
+Environment variables defining data file names
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env RADIOCHEMISTRY_COUNTRYWARD;\nenv SS_OTHER_FILE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="RADIOCHEMISTRY_COUNTRYWARD" type="USE_TEXT">sensitive.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="sensitive.txt" type="USE_TEXT">root:x:0:0:root:/root:/bin/bash</file>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_OTHER_FILE" type="USE_TEXT">other.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="other.txt" type="USE_TEXT">The quick brown fox jumps over the lazy dog.</file>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-09&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-09-CURL" type="USE_TEXT">curl -XGET &quot;http://localhost:9200/_cat/indices&quot;</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_6EjV4t3Gbz" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-09-Default">
+                <formula name="GOOD-09-Default">OUTPUT AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="OUTPUT">
+                    <actual encoding="STRING" input_id_ref="GOOD-09-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_TEXT">movies 5 1 6 0 14.7kb 14.7kb</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C252B-ELAS-05-ST01-DT01-DF18-CF12-01-GOOD-10" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>drilling down
+Environment variables defining data file names
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env RADIOCHEMISTRY_COUNTRYWARD;\nenv SS_OTHER_FILE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="RADIOCHEMISTRY_COUNTRYWARD" type="USE_TEXT">sensitive.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="sensitive.txt" type="USE_TEXT">sshd:x:105:65534::/var/run/sshd:/usr/sbin/nologin</file>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_OTHER_FILE" type="USE_TEXT">other.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="other.txt" type="USE_TEXT">Welcome to Linux Mint 14 Nadia (GNU/Linux 3.5.0-28-generic x86_64)
+
+Welcome to Linux Mint
+* Documentation:  http://www.linuxmint.com
+</file>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-10&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-10-CURL" type="USE_TEXT">curl -XPOST http://ss-localhost:9200/products/_search?pretty=true { &quot;query&quot;: { &quot;filtered&quot;: { &quot;query&quot;: { &quot;match&quot;: {&quot;_all&quot;: &quot;network routing&quot;}}, &quot;filter&quot;: { &quot;and&quot;: [ {&quot;range&quot;: {&quot;price&quot;: {&quot;gte&quot;: 0, &quot;lte&quot;: 5000}}} ]} }}, &quot;facets&quot;:{ &quot;department_id&quot;: {&quot;terms&quot;: {&quot;field&quot;: &quot;department_id&quot;}}, &quot;department_name&quot;: {&quot;terms&quot;: {&quot;field&quot;: &quot;department_name&quot;}}, &quot;price&quot;: {&quot;histogram&quot;: {&quot;field&quot;: &quot;price&quot;, &quot;interval&quot;: 5000}}} }</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_C3o8OSQzdJ" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-10-Default">
+                <formula name="GOOD-10-Default">OUTPUT AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="OUTPUT">
+                    <actual encoding="STRING" input_id_ref="GOOD-10-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-10/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C252B-ELAS-05-ST01-DT01-DF18-CF12-01-BAD-01" reset_scheme="NONE" timeout="300" type="BAD">
+            <description>Environment variables defining data file names
+</description>
+            <technical_impact>READ_APPLICATION_DATA</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env RADIOCHEMISTRY_COUNTRYWARD;\nenv SS_OTHER_FILE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="RADIOCHEMISTRY_COUNTRYWARD" type="USE_TEXT">sensitive.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="sensitive.txt" type="USE_TEXT">root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+bin:x:2:2:bin:/bin:/bin/sh
+sys:x:3:3:sys:/dev:/bin/sh
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/bin/sh
+man:x:6:12:man:/var/cache/man:/bin/sh
+lp:x:7:7:lp:/var/spool/lpd:/bin/sh
+mail:x:8:8:mail:/var/mail:/bin/sh
+news:x:9:9:news:/var/spool/news:/bin/sh
+uucp:x:10:10:uucp:/var/spool/uucp:/bin/sh
+proxy:x:13:13:proxy:/bin:/bin/sh
+www-data:x:33:33:www-data:/var/www:/bin/sh
+backup:x:34:34:backup:/var/backups:/bin/sh
+list:x:38:38:Mailing List Manager:/var/list:/bin/sh
+irc:x:39:39:ircd:/var/run/ircd:/bin/sh
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh
+nobody:x:65534:65534:nobody:/nonexistent:/bin/sh
+libuuid:x:100:101::/var/lib/libuuid:/bin/sh
+syslog:x:101:103::/home/syslog:/bin/false
+messagebus:x:102:105::/var/run/dbus:/bin/false
+avahi-autoipd:x:103:106:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false
+usbmux:x:104:46:usbmux daemon,,,:/home/usbmux:/bin/false
+kernoops:x:106:65534:Kernel Oops Tracking Daemon,,,:/:/bin/false
+rtkit:x:107:114:RealtimeKit,,,:/proc:/bin/false
+speech-dispatcher:x:108:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/sh
+colord:x:109:117:colord colour management daemon,,,:/var/lib/colord:/bin/false
+avahi:x:111:120:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false
+hplip:x:112:7:HPLIP system user,,,:/var/run/hplip:/bin/false
+pulse:x:113:121:PulseAudio daemon,,,:/var/run/pulse:/bin/false
+saned:x:114:123::/home/saned:/bin/false
+mdm:x:110:118:MDM Display Manager:/var/lib/mdm:/bin/false
+sshd:x:105:65534::/var/run/sshd:/usr/sbin/nologin
+statd:x:115:65534::/var/lib/nfs:/bin/false
+ntp:x:116:128::/home/ntp:/bin/false
+rabbitmq:x:117:129:RabbitMQ messaging server,,,:/var/lib/rabbitmq:/bin/false
+celery:x:999:999::/var/lib/celery:/bin/false
+boinc:x:118:130:BOINC core client,,,:/var/lib/boinc-client:/bin/false
+</file>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_OTHER_FILE" type="USE_TEXT">other.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="other.txt" type="USE_TEXT">foo
+</file>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-02&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                </process>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                </process>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" input_id="GOOD-02-CURLkEihJGNHah" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_search' -d '{&quot;query&quot;: {&quot;query_string&quot;: {&quot;query&quot;: &quot;kill&quot;}}}'</script>
+                </process>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_8jBxj160rDXe5Ui53dB2" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="read_files_formula_toM3tzO2Ds">
+                <formula name="read_files_formula_toM3tzO2Ds">weakness_started_WDi58qFo4L53vsS8Va4O AND ((NOT PERFORMER AND (etc_passwd_line_pattern_tgucAjSTQI OR etc_passwd_root_user_9KQ2rI971U OR etc_group_line_pattern_HnWhdUDsaO) AND NOT timeout_dGD66FJGFb) or (PERFORMER AND NOT ((etc_passwd_line_pattern_tgucAjSTQI OR etc_passwd_root_user_9KQ2rI971U OR etc_group_line_pattern_HnWhdUDsaO) OR timeout_dGD66FJGFb OR controlled_exit_sVSIAc7xa0)))</formula>
+                <formula name="no_weakness_started_formula_74ynL5KSMT">(NOT PERFORMER AND (etc_passwd_line_pattern_tgucAjSTQI OR etc_passwd_root_user_9KQ2rI971U OR etc_group_line_pattern_HnWhdUDsaO) AND NOT timeout_dGD66FJGFb) or (PERFORMER AND NOT ((etc_passwd_line_pattern_tgucAjSTQI OR etc_passwd_root_user_9KQ2rI971U OR etc_group_line_pattern_HnWhdUDsaO) OR timeout_dGD66FJGFb OR controlled_exit_sVSIAc7xa0))</formula>
+            </scoring_formula>
+            <output_checks>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="timeout_dGD66FJGFb" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="controlled_exit_sVSIAc7xa0" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="continued_execution_E4O1jzRVGt" type="USE_TEXT">CONTINUED_EXECUTION</simple_check>
+                <compare_check check_type="REGEX" name="etc_passwd_line_pattern_tgucAjSTQI">
+                    <actual encoding="STRING" output_type="FILE_CONTENTS">logfile.txt</actual>
+                    <expected encoding="STRING" type="USE_TEXT">.+:.+:[0-9]+:[0-9]+:.+:.+:.*</expected>
+                </compare_check>
+                <compare_check check_type="REGEX" name="etc_passwd_root_user_9KQ2rI971U">
+                    <actual encoding="STRING" output_type="FILE_CONTENTS">logfile.txt</actual>
+                    <expected encoding="STRING" type="USE_TEXT">^root:.*</expected>
+                </compare_check>
+                <compare_check check_type="REGEX" name="etc_group_line_pattern_HnWhdUDsaO">
+                    <actual encoding="STRING" output_type="FILE_CONTENTS">logfile.txt</actual>
+                    <expected encoding="STRING" type="USE_TEXT">.+:x:[0-9]+:</expected>
+                </compare_check>
+                <compare_check check_type="CONTAINS" name="weakness_started_WDi58qFo4L53vsS8Va4O">
+                    <actual encoding="STRING" input_id_ref="lttng_output_8jBxj160rDXe5Ui53dB2" output_type="STANDARD_OUT">None</actual>
+                    <expected encoding="STRING" type="USE_TEXT">stonesoup_trace:weakness_start</expected>
+                </compare_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C252B-ELAS-05-ST01-DT01-DF18-CF12-01-BAD-02" reset_scheme="NONE" timeout="300" type="BAD">
+            <description>Environment variables defining data file names
+</description>
+            <technical_impact>READ_APPLICATION_DATA</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env RADIOCHEMISTRY_COUNTRYWARD;\nenv SS_OTHER_FILE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="RADIOCHEMISTRY_COUNTRYWARD" type="USE_TEXT">sensitive.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="sensitive.txt" type="USE_TEXT">root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:someguy
+tty:x:5:
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:
+fax:x:21:someguy
+voice:x:22:
+cdrom:x:24:someguy
+floppy:x:25:
+tape:x:26:
+sudo:x:27:someguy
+audio:x:29:pulse,someguy
+dip:x:30:someguy
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+gnats:x:41:
+shadow:x:42:
+utmp:x:43:
+video:x:44:someguy,boinc
+sasl:x:45:
+plugdev:x:46:someguy
+staff:x:50:
+games:x:60:
+users:x:100:
+nogroup:x:65534:
+libuuid:x:101:
+crontab:x:102:
+syslog:x:103:
+fuse:x:104:someguy
+messagebus:x:105:
+avahi-autoipd:x:106:
+lpadmin:x:107:someguy
+ssl-cert:x:108:
+netdev:x:109:someguy
+mlocate:x:111:
+ssh:x:112:
+utempter:x:113:
+rtkit:x:114:
+bluetooth:x:115:
+scanner:x:116:someguy
+colord:x:117:
+nopasswdlogin:x:119:
+avahi:x:120:
+pulse:x:121:
+pulse-access:x:122:
+saned:x:123:
+vboxsf:x:124:
+sambashare:x:125:someguy
+mdm:x:118:
+someguy:x:1000:
+winbindd_priv:x:110:
+_cvsadmin:x:126:
+ntp:x:128:
+rabbitmq:x:129:
+celery:x:999:
+boinc:x:130:
+science:x:131:
+</file>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_OTHER_FILE" type="USE_TEXT">other.txt</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="other.txt" type="USE_TEXT">
+</file>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-08&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                </process>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                </process>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" input_id="GOOD-08-LOADqEeuLGs6qK" type="USE_TEXT">curl -XPUT localhost:9200/_bulk --data-binary @good-06/shakespeare.json</script>
+                </process>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" input_id="GOOD-08-SEARCHV1NX39Ya1n" type="USE_TEXT">curl -XPOST http://ss-localhost:9200/_search?pretty=true -d'{&quot;query&quot;: {&quot;query_string&quot;: {&quot;query&quot;: &quot;WESTMORELAND&quot;}}, &quot;sort&quot;: &quot;_id&quot;}'</script>
+                </process>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_McOPfmvVPBQnomKVVqYG" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="read_files_formula_JdeuytkXFg">
+                <formula name="read_files_formula_JdeuytkXFg">weakness_started_d8pdfmO1McQC1VD46h5I AND ((NOT PERFORMER AND (etc_passwd_line_pattern_h5SKuj7iqW OR etc_passwd_root_user_dlPmxo1Irf OR etc_group_line_pattern_4LczfMq9Gr) AND NOT timeout_SjnUvqPuGt) or (PERFORMER AND NOT ((etc_passwd_line_pattern_h5SKuj7iqW OR etc_passwd_root_user_dlPmxo1Irf OR etc_group_line_pattern_4LczfMq9Gr) OR timeout_SjnUvqPuGt OR controlled_exit_33fp7wJjEX)))</formula>
+                <formula name="no_weakness_started_formula_EFEV0sWcNu">(NOT PERFORMER AND (etc_passwd_line_pattern_h5SKuj7iqW OR etc_passwd_root_user_dlPmxo1Irf OR etc_group_line_pattern_4LczfMq9Gr) AND NOT timeout_SjnUvqPuGt) or (PERFORMER AND NOT ((etc_passwd_line_pattern_h5SKuj7iqW OR etc_passwd_root_user_dlPmxo1Irf OR etc_group_line_pattern_4LczfMq9Gr) OR timeout_SjnUvqPuGt OR controlled_exit_33fp7wJjEX))</formula>
+            </scoring_formula>
+            <output_checks>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="timeout_SjnUvqPuGt" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="controlled_exit_33fp7wJjEX" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="continued_execution_wKXRWI1lSi" type="USE_TEXT">CONTINUED_EXECUTION</simple_check>
+                <compare_check check_type="REGEX" name="etc_passwd_line_pattern_h5SKuj7iqW">
+                    <actual encoding="STRING" output_type="FILE_CONTENTS">logfile.txt</actual>
+                    <expected encoding="STRING" type="USE_TEXT">.+:.+:[0-9]+:[0-9]+:.+:.+:.*</expected>
+                </compare_check>
+                <compare_check check_type="REGEX" name="etc_passwd_root_user_dlPmxo1Irf">
+                    <actual encoding="STRING" output_type="FILE_CONTENTS">logfile.txt</actual>
+                    <expected encoding="STRING" type="USE_TEXT">^root:.*</expected>
+                </compare_check>
+                <compare_check check_type="REGEX" name="etc_group_line_pattern_4LczfMq9Gr">
+                    <actual encoding="STRING" output_type="FILE_CONTENTS">logfile.txt</actual>
+                    <expected encoding="STRING" type="USE_TEXT">.+:x:[0-9]+:</expected>
+                </compare_check>
+                <compare_check check_type="CONTAINS" name="weakness_started_d8pdfmO1McQC1VD46h5I">
+                    <actual encoding="STRING" input_id_ref="lttng_output_McOPfmvVPBQnomKVVqYG" output_type="STANDARD_OUT">None</actual>
+                    <expected encoding="STRING" type="USE_TEXT">stonesoup_trace:weakness_start</expected>
+                </compare_check>
+            </output_checks>
+        </iopair>
+    </iopairs>
+</project>

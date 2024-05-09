@@ -1,0 +1,112 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 154077,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "CWE-584 Return Inside Finally\n This test takes the name of a file as input. It then attempts\n to get the absolute path of the file and open it for reading.\n Since GetAbsolutePath.getAbsolutePath has a return in a finally\n clause, any generated warnings are dropped, eventually leading to\n a null pointer exception.\nMetadata\n - Base program: Elastic Search\n - Source Taint: ENVIRONMENT_VARIABLE\n - Data Type: ARRAY\n - Data Flow: JAVA_GENERICS\n - Control Flow: BREAK_WITH_LABEL",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C584A-ELAS-09-ST01-DT01-DF18-CF25-01.xml"
+          },
+          "length": 69250,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "ddea34596dc0826138622403e93e09c78b04dfcca75bdb28729262085b933134"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/index/cache/id/ShardIdCacheModule.java"
+          },
+          "length": 7509,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "f6fe0095e25c2dd1a80f49fc22406b1301acfb758a6f85937ce5f98e07a29a7c"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "584",
+              "name": "Return Inside Finally Block"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-584",
+          "message": {
+            "text": "Return Inside Finally Block."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/index/cache/id/ShardIdCacheModule.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 128,
+                  "endLine": 133
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "584",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

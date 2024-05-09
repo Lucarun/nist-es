@@ -1,0 +1,111 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 155077,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "This test takes in a char value from a taint source. The value is cast to a byte causing an unsigned to signed conversion. This value is then used to allocate an array. If the original char is >127 this will lead to a negative index for the array causing a NegativeArraySizeException.\nMetadata\n - Base program: Elastic Search\n - Source Taint: ENVIRONMENT_VARIABLE\n - Data Type: ARRAY\n - Data Flow: BASIC\n - Control Flow: BREAK_WITH_LABEL",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C196A-ELAS-09-ST01-DT01-DF11-CF25-01.xml"
+          },
+          "length": 66608,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "01685885ceddb422f17e999ca44b8c01d37bc12c63a919af0b44897cf3fd395c"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/index/cache/id/ShardIdCacheModule.java"
+          },
+          "length": 5601,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "d59ddc5ca20bc9a33117b6a689d04381e8c365ee39f812b69aa9d3c56aa75f4c"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "196",
+              "name": "Unsigned to Signed Conversion Error"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-196",
+          "message": {
+            "text": "Unsigned to Signed Conversion Error."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/index/cache/id/ShardIdCacheModule.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 136
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "196",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+code_complexity_features:
+- feature: FILE_CONTENTS
+  feature_group: source_taint
+  file_name: /tmp/tmp644xjW_ss_testcase/src/src/main/java/org/elasticsearch/index/cache/id/ShardIdCacheModule.java
+  function_name: configure
+  line_number: '0'
+- feature: void_pointer
+  feature_group: data_type
+  file_name: /tmp/tmp644xjW_ss_testcase/src/src/main/java/org/elasticsearch/index/cache/id/ShardIdCacheModule.java
+  function_name: configure
+  line_number: '0'
+- feature: basic
+  feature_group: data_flow
+  file_name: /tmp/tmp644xjW_ss_testcase/src/src/main/java/org/elasticsearch/index/cache/id/ShardIdCacheModule.java
+  function_name: configure
+  line_number: '0'
+- feature: sequence
+  feature_group: control_flow
+  file_name: /tmp/tmp644xjW_ss_testcase/src/src/main/java/org/elasticsearch/index/cache/id/ShardIdCacheModule.java
+  function_name: configure
+  line_number: '0'
+description: 'This test takes a number and attempts to determine whether it is prime
+  by dividing it by each number less than it. For large enough prime integers, this
+  calculation takes an excessive amount of time.
+
+  '
+io_pair:
+  benigns:
+  - inputs:
+    - name: CARAVANNER_GEOTHERMIC
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/initiation_unscorched.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/initiation_unscorched.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '68718952445'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: CARAVANNER_GEOTHERMIC
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/initiation_unscorched.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/initiation_unscorched.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '1301'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: CARAVANNER_GEOTHERMIC
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/initiation_unscorched.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/initiation_unscorched.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '1073676288'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable
+
+    '
+  exploits:
+  - inputs:
+    - name: CARAVANNER_GEOTHERMIC
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/initiation_unscorched.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/initiation_unscorched.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '4776913109852041418248056622882488319'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: CARAVANNER_GEOTHERMIC
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/initiation_unscorched.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/initiation_unscorched.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '195845982777569926302400511'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmp644xjW_ss_testcase/src/src/main/java/org/elasticsearch/index/cache/id/ShardIdCacheModule.java
+  function_name: configure
+  line_number: '0'
+- entry_point_type: CROSSOVER_POINT
+  file_name: /tmp/tmp644xjW_ss_testcase/src/src/main/java/org/elasticsearch/index/cache/id/ShardIdCacheModule.java
+  function_name: configure
+  line_number: '0'

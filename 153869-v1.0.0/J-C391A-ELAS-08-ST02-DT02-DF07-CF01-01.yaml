@@ -1,0 +1,115 @@
+code_complexity_features:
+- feature: FILE_CONTENTS
+  feature_group: source_taint
+  file_name: /tmp/tmpDyZuCu_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+- feature: simple
+  feature_group: data_type
+  file_name: /tmp/tmpDyZuCu_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+- feature: index_alias_1
+  feature_group: data_flow
+  file_name: /tmp/tmpDyZuCu_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+- feature: callback
+  feature_group: control_flow
+  file_name: /tmp/tmpDyZuCu_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+description: "This test takes user input for the size of an array to be\n allocated.\
+  \ If the array fails to allocate, an exception is\n caught, but no action is taken\
+  \ resulting in a subsequent exception.\n"
+io_pair:
+  benigns:
+  - inputs:
+    - name: KELOIDAL_WHIRLBONE
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/bionergy_threadmaking.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/bionergy_threadmaking.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '1'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: KELOIDAL_WHIRLBONE
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/bionergy_threadmaking.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/bionergy_threadmaking.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '561'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: KELOIDAL_WHIRLBONE
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/bionergy_threadmaking.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/bionergy_threadmaking.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '9001'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable
+
+    '
+  exploits:
+  - inputs:
+    - name: KELOIDAL_WHIRLBONE
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/bionergy_threadmaking.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/bionergy_threadmaking.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '987654321'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: KELOIDAL_WHIRLBONE
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/bionergy_threadmaking.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/bionergy_threadmaking.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '668554223'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmpDyZuCu_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: unbounteousSantiago
+  line_number: '0'

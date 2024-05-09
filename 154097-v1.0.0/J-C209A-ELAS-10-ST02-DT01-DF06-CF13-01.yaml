@@ -1,0 +1,197 @@
+code_complexity_features:
+- feature: FILE_CONTENTS
+  feature_group: source_taint
+  file_name: /tmp/tmpfLSeyi_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: doStart
+  line_number: '0'
+- feature: array
+  feature_group: data_type
+  file_name: /tmp/tmpfLSeyi_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: doStart
+  line_number: '0'
+- feature: address_as_function_return_value
+  feature_group: data_flow
+  file_name: /tmp/tmpfLSeyi_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: doStart
+  line_number: '0'
+- feature: interprocedural_2
+  feature_group: control_flow
+  file_name: /tmp/tmpfLSeyi_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: doStart
+  line_number: '0'
+description: "This test attempts to insert a new record into a MySQL\n database. \
+  \ In the event of a SQLException during execution of the insert\n command, diagnostic\
+  \ information about the database connection and SQL\n statement will be dumped to\
+  \ the output stream.\n"
+io_pair:
+  benigns:
+  - inputs:
+    - name: RESPANGLE_FERVIDNESS
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/interlocal_painterly.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/interlocal_painterly.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: IBM
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: mysql
+      ordinal: '3'
+      server: ss-db-mysql
+      source: database_content_input
+      stage: post_process
+      value: DROP DATABASE IF EXISTS $SS_DBMYSQLDATABASE;
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: mysql
+      ordinal: '4'
+      server: ss-db-mysql
+      source: database_content_input
+      stage: pre_process
+      value: northwind
+      value_encoding: none
+      value_type: USE_CONTENTS_OF_FILE
+    - name: SS_DBMYSQLDATABASE
+      ordinal: '5'
+      source: env_var_input
+      stage: pre_process
+      value: SET_DYNAMIC_DB_NAME
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: RESPANGLE_FERVIDNESS
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/interlocal_painterly.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/interlocal_painterly.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: Digital
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: mysql
+      ordinal: '3'
+      server: ss-db-mysql
+      source: database_content_input
+      stage: post_process
+      value: DROP DATABASE IF EXISTS $SS_DBMYSQLDATABASE;
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: mysql
+      ordinal: '4'
+      server: ss-db-mysql
+      source: database_content_input
+      stage: pre_process
+      value: northwind
+      value_encoding: none
+      value_type: USE_CONTENTS_OF_FILE
+    - name: SS_DBMYSQLDATABASE
+      ordinal: '5'
+      source: env_var_input
+      stage: pre_process
+      value: SET_DYNAMIC_DB_NAME
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variables defining database connection parameters including
+    username and password.
+
+    '
+  exploits:
+  - inputs:
+    - name: RESPANGLE_FERVIDNESS
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/interlocal_painterly.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/interlocal_painterly.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: DigitalPhotographicalTecnologicalSprectrumAnalysis
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: mysql
+      ordinal: '3'
+      server: ss-db-mysql
+      source: database_content_input
+      stage: post_process
+      value: DROP DATABASE IF EXISTS $SS_DBMYSQLDATABASE;
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: mysql
+      ordinal: '4'
+      server: ss-db-mysql
+      source: database_content_input
+      stage: pre_process
+      value: northwind
+      value_encoding: none
+      value_type: USE_CONTENTS_OF_FILE
+    - name: SS_DBMYSQLDATABASE
+      ordinal: '5'
+      source: env_var_input
+      stage: pre_process
+      value: SET_DYNAMIC_DB_NAME
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: RESPANGLE_FERVIDNESS
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/interlocal_painterly.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/interlocal_painterly.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: AutomatedTellerMachineServicingPartsAndRepairCenter
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: mysql
+      ordinal: '3'
+      server: ss-db-mysql
+      source: database_content_input
+      stage: post_process
+      value: DROP DATABASE IF EXISTS $SS_DBMYSQLDATABASE;
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: mysql
+      ordinal: '4'
+      server: ss-db-mysql
+      source: database_content_input
+      stage: pre_process
+      value: northwind
+      value_encoding: none
+      value_type: USE_CONTENTS_OF_FILE
+    - name: SS_DBMYSQLDATABASE
+      ordinal: '5'
+      source: env_var_input
+      stage: pre_process
+      value: SET_DYNAMIC_DB_NAME
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: CROSSOVER_POINT
+  file_name: /tmp/tmpfLSeyi_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: inogenicUnderpin
+  line_number: '0'
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmpfLSeyi_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: inogenicUnderpin
+  line_number: '0'

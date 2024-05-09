@@ -1,0 +1,120 @@
+code_complexity_features:
+- feature: FILE_CONTENTS
+  feature_group: source_taint
+  file_name: /tmp/tmpp1VWIO_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: doStart
+  line_number: '0'
+- feature: array
+  feature_group: data_type
+  file_name: /tmp/tmpp1VWIO_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: doStart
+  line_number: '0'
+- feature: basic
+  feature_group: data_flow
+  file_name: /tmp/tmpp1VWIO_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: doStart
+  line_number: '0'
+- feature: function_invocation_overload
+  feature_group: control_flow
+  file_name: /tmp/tmpp1VWIO_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: doStart
+  line_number: '0'
+description: " This test takes in data from an argument, that is intended\n to contain\
+  \ parameters for an 'ls' command. The test does not perform\n checks for special\
+  \ characters, however, and it is possible to include\n other, unexpected commands\
+  \ as part of the ls parameter set.\n"
+io_pair:
+  benigns:
+  - inputs:
+    - name: CHERISHMENT_EUCRASIA
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/errhine_typhaceous.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/errhine_typhaceous.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: -a
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: CHERISHMENT_EUCRASIA
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/errhine_typhaceous.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/errhine_typhaceous.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: -l
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: CHERISHMENT_EUCRASIA
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/errhine_typhaceous.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/errhine_typhaceous.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: -la
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable defining test value.
+
+    '
+  exploits:
+  - inputs:
+    - name: CHERISHMENT_EUCRASIA
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/errhine_typhaceous.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/errhine_typhaceous.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: ; echo Hello World
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: CHERISHMENT_EUCRASIA
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/errhine_typhaceous.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/errhine_typhaceous.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: ; env
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmpp1VWIO_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: sectionizeAppercipient
+  line_number: '0'
+- entry_point_type: CROSSOVER_POINT
+  file_name: /tmp/tmpp1VWIO_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: sectionizeAppercipient
+  line_number: '0'

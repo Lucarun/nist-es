@@ -1,0 +1,112 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 154923,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "Algorithmic variant: basic\nRoot cause: none\n This test takes a string. If the first letter is a lower case letter, the main thread will get a lock guarding an integer, and count the number of lower-case letters into that integer. A second thread will get a lock guarding a second integer, and will count the number of upper-case letters into that integer.\n If the first letter is an upper case letter, both threads will attempt to get the same lock, resulting in a deadlock.\nMetadata\n - Base program: Elastic Search\n - Source Taint: FILE_CONTENTS\n - Data Type: VOID_POINTER\n - Data Flow: VAR_ARG_LIST\n - Control Flow: INFINITE_LOOP",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C833A-ELAS-05-ST02-DT03-DF12-CF03-01.xml"
+          },
+          "length": 69415,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "fd20cace7a3c510eda26f45752e5dc670eb2607da3c1f6ca4b383da2806de665"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/index/cache/IndexCacheModule.java"
+          },
+          "length": 9019,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "0aeba76a1c96ca06155a16df2952f18ba124ead6f9b8948b2bde4284e48c1f5e"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "833",
+              "name": "Deadlock"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-833",
+          "message": {
+            "text": "Deadlock."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/index/cache/IndexCacheModule.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 218,
+                  "endLine": 219
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "833",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+code_complexity_features:
+- feature: ENVIRONMENT_VARIABLE
+  feature_group: source_taint
+  file_name: /tmp/tmpiEgXpQ_ss_testcase/src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java
+  function_name: CustomConcurrentMergeScheduler
+  line_number: '0'
+- feature: array
+  feature_group: data_type
+  file_name: /tmp/tmpiEgXpQ_ss_testcase/src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java
+  function_name: CustomConcurrentMergeScheduler
+  line_number: '0'
+- feature: address_as_constant
+  feature_group: data_flow
+  file_name: /tmp/tmpiEgXpQ_ss_testcase/src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java
+  function_name: CustomConcurrentMergeScheduler
+  line_number: '0'
+- feature: recursive
+  feature_group: control_flow
+  file_name: /tmp/tmpiEgXpQ_ss_testcase/src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java
+  function_name: CustomConcurrentMergeScheduler
+  line_number: '0'
+description: "Algorithmic variant: basic\nRoot cause: none\n This test takes a string.\
+  \  If the first letter is a lower case letter, the main thread will get a lock guarding\
+  \ an integer, and count the number of lower-case letters into that integer.  A second\
+  \ thread will get a lock guarding a second integer, and will count the number of\
+  \ upper-case letters into that integer.\n  If the first letter is an upper case\
+  \ letter, both threads will attempt to get the same lock, resulting in a deadlock.\n"
+io_pair:
+  benigns:
+  - inputs:
+    - id: source
+      name: HYPOCARPIUM_UNDERLEVER
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: add
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - id: source
+      name: HYPOCARPIUM_UNDERLEVER
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: a04f
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - id: source
+      name: HYPOCARPIUM_UNDERLEVER
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: aa
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable defining string value.
+
+    '
+  exploits:
+  - inputs:
+    - id: source
+      name: HYPOCARPIUM_UNDERLEVER
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: A04F
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - id: source
+      name: HYPOCARPIUM_UNDERLEVER
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: Add
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmpiEgXpQ_ss_testcase/src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java
+  function_name: run
+  line_number: '0'

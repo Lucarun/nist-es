@@ -1,0 +1,112 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 154340,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "This test takes input in the form of an integer\n and creates an array of that size. If the input is too large\n an exception is raised and the array is initialized to a\n default size without ever changing the size variable. This\n leads to an ArrayIndexoutOfBoundsException when the array\n is accessed.\nMetadata\n - Base program: Elastic Search\n - Source Taint: FILE_CONTENTS\n - Data Type: ARRAY\n - Data Flow: ADDRESS_AS_CONSTANT\n - Control Flow: SEQUENCE",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C460A-ELAS-04-ST02-DT01-DF05-CF20-01.xml"
+          },
+          "length": 68845,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "d8e28fd09e1523acc30bb37252f138b320242d2b09659aecd92e2fe0e202e94b"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/http/netty/NettyHttpChannel.java"
+          },
+          "length": 17183,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "309c701a2c0c174309623718e7c42391ca0655f87a40dd774b5d5cb85e93692d"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "460",
+              "name": "Improper Cleanup on Thrown Exception"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-460",
+          "message": {
+            "text": "Improper Cleanup on Thrown Exception."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/http/netty/NettyHttpChannel.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 152,
+                  "endLine": 155
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "460",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

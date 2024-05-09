@@ -1,0 +1,112 @@
+code_complexity_features:
+- feature: ENVIRONMENT_VARIABLE
+  feature_group: source_taint
+  file_name: /tmp/tmpZxb16T_ss_testcase/src/src/main/java/org/elasticsearch/indices/InternalIndicesService.java
+  function_name: indexServiceSafe
+  line_number: '0'
+- feature: void_pointer
+  feature_group: data_type
+  file_name: /tmp/tmpZxb16T_ss_testcase/src/src/main/java/org/elasticsearch/indices/InternalIndicesService.java
+  function_name: indexServiceSafe
+  line_number: '0'
+- feature: index_alias_1
+  feature_group: data_flow
+  file_name: /tmp/tmpZxb16T_ss_testcase/src/src/main/java/org/elasticsearch/indices/InternalIndicesService.java
+  function_name: indexServiceSafe
+  line_number: '0'
+- feature: callback
+  feature_group: control_flow
+  file_name: /tmp/tmpZxb16T_ss_testcase/src/src/main/java/org/elasticsearch/indices/InternalIndicesService.java
+  function_name: indexServiceSafe
+  line_number: '0'
+description: "CWE-584 Return Inside Finally\n This test takes the name of a file as\
+  \ input. It then attempts\n to get the absolute path of the file and open it for\
+  \ reading.\n Since GetAbsolutePath.getAbsolutePath has a return in a finally\n clause,\
+  \ any generated warnings are dropped, eventually leading to\n a null pointer exception."
+io_pair:
+  benigns:
+  - inputs:
+    - id: source
+      name: BALANOPHORIN_LEISURED
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: i_exist_yo.txt
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - name: i_exist_yo.txt
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: This is some text, it is in the file.
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - id: source
+      name: BALANOPHORIN_LEISURED
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: aFile.txt
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - name: aFile.txt
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: One Fish, Two Fish, Red fish, Blue Fish.
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - id: source
+      name: BALANOPHORIN_LEISURED
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: asdfasdfasdf.txt
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - name: asdfasdfasdf.txt
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: 'asdfasdfasdf
+
+        asdfasdfasdf
+
+        asdfasdfasdf
+
+        '
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variables
+
+    '
+  exploits:
+  - inputs:
+    - id: source
+      name: BALANOPHORIN_LEISURED
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: this_file_does_not_exist_kthanksbai.txt
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - id: source
+      name: BALANOPHORIN_LEISURED
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: whatareyouevenlookingfor.txt
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: CROSSOVER_POINT
+  file_name: /tmp/tmpZxb16T_ss_testcase/src/src/main/java/org/elasticsearch/indices/InternalIndicesService.java
+  function_name: getAbsolutePath
+  line_number: '0'
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmpZxb16T_ss_testcase/src/src/main/java/org/elasticsearch/indices/InternalIndicesService.java
+  function_name: indispensablyPancreatization
+  line_number: '0'

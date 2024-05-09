@@ -1,0 +1,112 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 155549,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "This test takes a string, and reads through the string, printing out each character with ASCII value greater than 48. If it encounters a character with ASCII value less than 48, it will fail to increment the loop counter, and loop forever.\nMetadata\n - Base program: Elastic Search\n - Source Taint: FILE_CONTENTS\n - Data Type: VOID_POINTER\n - Data Flow: JAVA_GENERICS\n - Control Flow: INTERCLASS_50",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C835A-ELAS-10-ST02-DT03-DF18-CF07-01.xml"
+          },
+          "length": 71294,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "682e10afc111b628298f3bdd21e45155602614c59be06b1051b2bfed88e3d3fd"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/tribe/TribeService.java"
+          },
+          "length": 33877,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "ba03e7cc5200fdd9a6118183c5bec3f86fcf56bf97af2127cc6d7e4d30bf47de"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "835",
+              "name": "Loop with Unreachable Exit Condition ('Infinite Loop')"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-835",
+          "message": {
+            "text": "Loop with Unreachable Exit Condition ('Infinite Loop')."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/tribe/TribeService.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 803,
+                  "endLine": 813
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "835",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 154960,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "This test takes in a value passed as an argument\n This value is originally signed, but is converted\n to unsigned when stored in a char. This value is then\n used to index an allocated array with a signed value.\nMetadata\n - Base program: Elastic Search\n - Source Taint: ENVIRONMENT_VARIABLE\n - Data Type: ARRAY\n - Data Flow: JAVA_GENERICS\n - Control Flow: CALLBACK",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C195A-ELAS-07-ST01-DT01-DF18-CF01-01.xml"
+          },
+          "length": 67513,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "e06275e1fee5762f0fceb0441fc166859dc278d51c374e4dd5432f119b2eeda3"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/index/store/distributor/AbstractDistributor.java"
+          },
+          "length": 6999,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "121bf56aa26a6c5b62f6857fbb9b733d7ae057272866aa372d24748a82d15ffd"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "195",
+              "name": "Signed to Unsigned Conversion Error"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-195",
+          "message": {
+            "text": "Signed to Unsigned Conversion Error."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/index/store/distributor/AbstractDistributor.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 64,
+                  "endLine": 68
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "195",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

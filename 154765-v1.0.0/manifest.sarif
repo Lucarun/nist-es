@@ -1,0 +1,112 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 154765,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "This test takes a string. It locks a lock upon encountering the first a/A in the string, using one lock for lower case a and a different lock for upper case A. Upon encountering a second a/A in the string, it unlocks the lower case lock. If an A appears before an a, then the lock is unlocked without previously being locked, resulting in an exception.\nMetadata\n - Base program: Elastic Search\n - Source Taint: FILE_CONTENTS\n - Data Type: VOID_POINTER\n - Data Flow: INDEX_ALIAS_1\n - Control Flow: INTERPROCEDURAL_1",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C832A-ELAS-05-ST02-DT03-DF07-CF12-01.xml"
+          },
+          "length": 70496,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "b649dd18de925de1fbf8c39b0870237fc1217805b133b65e3b9d0fefcada0426"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/index/cache/IndexCacheModule.java"
+          },
+          "length": 8885,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "331fa9cf5501c1b0f3ba959b9708eb78767be7cdaf382df7acbbb584ae542492"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "832",
+              "name": "Unlock of a Resource that is not Locked"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-832",
+          "message": {
+            "text": "Unlock of a Resource that is not Locked."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/index/cache/IndexCacheModule.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 191,
+                  "endLine": 192
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "832",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+code_complexity_features:
+- feature: SOCKET
+  feature_group: source_taint
+  file_name: /tmp/tmpksWKqk_ss_testcase/src/src/main/java/org/elasticsearch/index/cache/IndexCacheModule.java
+  function_name: configure
+  line_number: '0'
+- feature: array
+  feature_group: data_type
+  file_name: /tmp/tmpksWKqk_ss_testcase/src/src/main/java/org/elasticsearch/index/cache/IndexCacheModule.java
+  function_name: configure
+  line_number: '0'
+- feature: index_alias_1
+  feature_group: data_flow
+  file_name: /tmp/tmpksWKqk_ss_testcase/src/src/main/java/org/elasticsearch/index/cache/IndexCacheModule.java
+  function_name: configure
+  line_number: '0'
+- feature: function_invocation_overload
+  feature_group: control_flow
+  file_name: /tmp/tmpksWKqk_ss_testcase/src/src/main/java/org/elasticsearch/index/cache/IndexCacheModule.java
+  function_name: configure
+  line_number: '0'
+description: 'This test takes in an integer n. The integer represents the number of
+  buffers to allocate.  For a large n an OutOfMemoryError will be generated.  This
+  error is caught and the program will continually try to request memory
+
+  '
+io_pair:
+  benigns:
+  - inputs:
+    - address: ss-localhost
+      id: source
+      ordinal: '1'
+      port: '8887'
+      source: socket_input
+      stage: co_process
+      value: '10'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - address: ss-localhost
+      id: source
+      ordinal: '1'
+      port: '8887'
+      source: socket_input
+      stage: co_process
+      value: '42'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - address: ss-localhost
+      id: source
+      ordinal: '1'
+      port: '8887'
+      source: socket_input
+      stage: co_process
+      value: '37'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable defining size value.
+
+    '
+  exploits:
+  - inputs:
+    - address: ss-localhost
+      id: source
+      ordinal: '1'
+      port: '8887'
+      source: socket_input
+      stage: co_process
+      value: '8785856'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - address: ss-localhost
+      id: source
+      ordinal: '1'
+      port: '8887'
+      source: socket_input
+      stage: co_process
+      value: '8785860'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: CROSSOVER_POINT
+  file_name: /tmp/tmpksWKqk_ss_testcase/src/src/main/java/org/elasticsearch/index/cache/IndexCacheModule.java
+  function_name: seismographicalPolytonic
+  line_number: '0'

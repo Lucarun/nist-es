@@ -1,0 +1,112 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 154526,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "Algorithmic variant: basic\nRoot cause: none\n This test takes a string. It separates the string into a number to use for an array size to sort and a second string to share between threads. It then creates two threads and runs them both. The first thread calculates an increment amount that is used in the second thread. If the string contains a number or lower decimal value ascii character it will cause the increment amount to become negative which won't be fixed before the second thread uses it causing a StringIndexOutOfBoundsException.\nMetadata\n - Base program: Elastic Search\n - Source Taint: FILE_CONTENTS\n - Data Type: SIMPLE\n - Data Flow: ADDRESS_AS_CONSTANT\n - Control Flow: FUNCTION_INVOCATION_OVERLOAD",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C820A-ELAS-08-ST02-DT02-DF05-CF26-01.xml"
+          },
+          "length": 81428,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "618bf1c12d617e2b6f0c2ec00091afada626da1584358f14c8465f017e82681f"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java"
+          },
+          "length": 14826,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "52da573786c62ba414fdec4d4b6e868114e789623d6cc02a53600570c9a2926b"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "820",
+              "name": "Missing Synchronization"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-820",
+          "message": {
+            "text": "Missing Synchronization."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 346,
+                  "endLine": 350
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "820",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

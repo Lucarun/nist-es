@@ -1,0 +1,120 @@
+code_complexity_features:
+- feature: FILE_CONTENTS
+  feature_group: source_taint
+  file_name: /tmp/tmp1YbZUj_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+- feature: array
+  feature_group: data_type
+  file_name: /tmp/tmp1YbZUj_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+- feature: address_as_function_return_value
+  feature_group: data_flow
+  file_name: /tmp/tmp1YbZUj_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+- feature: recursive
+  feature_group: control_flow
+  file_name: /tmp/tmp1YbZUj_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+description: "This test gets the index of the character . in the input string.\n It\
+  \ then uses that index to get a substring beginning with .\n If . does not occur\
+  \ in the string, the index will be -1, and then\n the substring operation will fail\
+  \ with an IndexOutOfBounds exception.\n"
+io_pair:
+  benigns:
+  - inputs:
+    - name: COXCOMICAL_PERGAMENTACEOUS
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/desperadoism_voluble.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/desperadoism_voluble.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: The quick brown fox jumps over the lazy dog.
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: COXCOMICAL_PERGAMENTACEOUS
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/desperadoism_voluble.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/desperadoism_voluble.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '25.69'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: COXCOMICAL_PERGAMENTACEOUS
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/desperadoism_voluble.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/desperadoism_voluble.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '.14159'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable
+
+    '
+  exploits:
+  - inputs:
+    - name: COXCOMICAL_PERGAMENTACEOUS
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/desperadoism_voluble.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/desperadoism_voluble.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '314159'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: COXCOMICAL_PERGAMENTACEOUS
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/desperadoism_voluble.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/desperadoism_voluble.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: All good boys deserve fruit
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmp1YbZUj_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: teleostomianVivisepulture
+  line_number: '0'
+- entry_point_type: CROSSOVER_POINT
+  file_name: /tmp/tmp1YbZUj_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: teleostomianVivisepulture
+  line_number: '0'

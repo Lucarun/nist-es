@@ -1,0 +1,112 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 155271,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "This test takes in a value from a taint source.\n The value is truncated to an integer, and then used to generate\n a random number within a range. If the converted integer value\n is negative, SecureRandom.nextInt(value) will throw a\n RuntimeException.\nMetadata\n - Base program: Elastic Search\n - Source Taint: FILE_CONTENTS\n - Data Type: ARRAY\n - Data Flow: ADDRESS_AS_CONSTANT\n - Control Flow: RECURSIVE",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C197A-ELAS-01-ST02-DT01-DF05-CF19-01.xml"
+          },
+          "length": 69220,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "fe8d67cbaafaed7745bf45ea26a9f8beb2fcf94107379672bfd3b691b9bda3b6"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/http/netty/NettyHttpServerTransport.java"
+          },
+          "length": 23200,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "b84778a9f7f70150d57978e73c9000ba2bc7ff4c63ea74ec145e0bc31e12ec07"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "197",
+              "name": "Numeric Truncation Error"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-197",
+          "message": {
+            "text": "Numeric Truncation Error."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/http/netty/NettyHttpServerTransport.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 104,
+                  "endLine": 106
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "197",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

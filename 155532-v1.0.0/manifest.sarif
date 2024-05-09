@@ -1,0 +1,112 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 155532,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "This test takes a number from the user, and attempts to allocate, initialize, and print out an array of that size. If the number is too large, memory allocation will fail and the program will subsequently crash.\nMetadata\n - Base program: Elastic Search\n - Source Taint: FILE_CONTENTS\n - Data Type: SIMPLE\n - Data Flow: ADDRESS_AS_FUNCTION_RETURN_VALUE\n - Control Flow: BREAK_WITH_LABEL",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C789A-ELAS-08-ST02-DT02-DF06-CF25-01.xml"
+          },
+          "length": 69254,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "d1c683d1a4eabcdc6787136f473fd1f0d040ddcc25714f739f9f1becf4915326"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java"
+          },
+          "length": 10393,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "426411255e231e3c499d5c36708ac8e7cbd2248a1021abf62a3c1f2bdafc09ed"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "789",
+              "name": "Memory Allocation with Excessive Size Value"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-789",
+          "message": {
+            "text": "Memory Allocation with Excessive Size Value."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 170,
+                  "endLine": 176
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "789",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

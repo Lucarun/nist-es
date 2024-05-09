@@ -1,0 +1,118 @@
+code_complexity_features:
+- feature: FILE_CONTENTS
+  feature_group: source_taint
+  file_name: /tmp/tmp6lbNV7_ss_testcase/src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java
+  function_name: CustomConcurrentMergeScheduler
+  line_number: '0'
+- feature: void_pointer
+  feature_group: data_type
+  file_name: /tmp/tmp6lbNV7_ss_testcase/src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java
+  function_name: CustomConcurrentMergeScheduler
+  line_number: '0'
+- feature: address_as_function_return_value
+  feature_group: data_flow
+  file_name: /tmp/tmp6lbNV7_ss_testcase/src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java
+  function_name: CustomConcurrentMergeScheduler
+  line_number: '0'
+- feature: interclass_1
+  feature_group: control_flow
+  file_name: /tmp/tmp6lbNV7_ss_testcase/src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java
+  function_name: CustomConcurrentMergeScheduler
+  line_number: '0'
+description: 'This test takes a string.  It locks a lock upon encountering the first
+  ''1'' in the string, then unlocks the lock each time it subsequently encounters
+  an ''1''. If there are three or more ''1'' characters in the string, this will cause
+  multiple unlocks and an exception.
+
+  '
+io_pair:
+  benigns:
+  - inputs:
+    - name: SASTEAN_ORTOLAN
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/sabot_interionic.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/sabot_interionic.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '1234'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: SASTEAN_ORTOLAN
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/sabot_interionic.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/sabot_interionic.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '21212'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: SASTEAN_ORTOLAN
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/sabot_interionic.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/sabot_interionic.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '0010001'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable defining string value.
+
+    '
+  exploits:
+  - inputs:
+    - name: SASTEAN_ORTOLAN
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/sabot_interionic.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/sabot_interionic.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '111'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: SASTEAN_ORTOLAN
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/sabot_interionic.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/sabot_interionic.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '123412341'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmp6lbNV7_ss_testcase/src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java
+  function_name: run
+  line_number: '0'

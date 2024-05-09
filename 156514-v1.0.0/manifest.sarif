@@ -1,0 +1,112 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 156514,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "This test takes in data from an argument, that is intended\n to contain parameters for an 'find' command. The test does not perform\n checks on the parameters, however, and it is possible to include\n other, unexpected commands as part of the find parameter set.\nMetadata\n - Base program: Elastic Search\n - Source Taint: ENVIRONMENT_VARIABLE\n - Data Type: ARRAY\n - Data Flow: INDEX_ALIAS_1\n - Control Flow: INTERRUPT",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C088A-ELAS-08-ST01-DT01-DF07-CF16-01.xml"
+          },
+          "length": 72508,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "5f5b2f65346239c43a04ba22b19c4d1e7b9dbc1756fe9f85c79d39189ce6954b"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java"
+          },
+          "length": 11450,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "b92744760ee3ba2cebe2b644c94f58a467b23aa24a06a67975f006e49f4e2d13"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "88",
+              "name": "Improper Neutralization of Argument Delimiters in a Command ('Argument Injection')"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-88",
+          "message": {
+            "text": "Improper Neutralization of Argument Delimiters in a Command ('Argument Injection')."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 156,
+                  "endLine": 157
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "88",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

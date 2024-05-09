@@ -1,0 +1,111 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 156605,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "The product does not properly check inputs that are used for\n loop conditions when creating a random file name. If the target size of\n filename is too large for the filesystem, an IOException is raised\n and kills the current thread.\nMetadata\n - Base program: Elastic Search\n - Source Taint: SOCKET\n - Data Type: VOID_POINTER\n - Data Flow: VAR_ARG_LIST\n - Control Flow: INFINITE_LOOP",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C606B-ELAS-09-ST03-DT03-DF12-CF03-01.xml"
+          },
+          "length": 72044,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "4ce5f872c339f48f630dbbcb4d747a9115c948a0f2a9c2144220be5ad6e31e71"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/index/cache/id/ShardIdCacheModule.java"
+          },
+          "length": 12571,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "6b6839495c412482e9631d2b755b0e057ab0f004112307f387b09319b2ec5ed3"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "606",
+              "name": "Unchecked Input for Loop Condition"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-606",
+          "message": {
+            "text": "Unchecked Input for Loop Condition."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/index/cache/id/ShardIdCacheModule.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 277
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "606",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 155959,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "This test takes in integer n. The program attempts to open n files. If n is large enough the number of file handles will be exhausted.\nMetadata\n - Base program: Elastic Search\n - Source Taint: SOCKET\n - Data Type: ARRAY\n - Data Flow: VAR_ARG_LIST\n - Control Flow: INTERCLASS_2",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C774A-ELAS-02-ST03-DT01-DF12-CF05-01.xml"
+          },
+          "length": 71460,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "126b71da46f08a9be2d36235aba54a3ad698ab6990df95ab6adf4488b3dcccfd"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java"
+          },
+          "length": 16680,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "ed859d9125b7029d8ac2f5f2b1610c724c1924861646c52e99c54d019063d545"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "774",
+              "name": "Allocation of File Descriptors or Handles Without Limits or Throttling"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-774",
+          "message": {
+            "text": "Allocation of File Descriptors or Handles Without Limits or Throttling."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 363,
+                  "endLine": 382
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "774",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

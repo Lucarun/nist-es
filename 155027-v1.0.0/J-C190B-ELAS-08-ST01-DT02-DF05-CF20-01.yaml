@@ -1,0 +1,75 @@
+code_complexity_features:
+- feature: ENVIRONMENT_VARIABLE
+  feature_group: source_taint
+  file_name: /tmp/tmptJ6mba_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+- feature: simple
+  feature_group: data_type
+  file_name: /tmp/tmptJ6mba_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+- feature: address_as_constant
+  feature_group: data_flow
+  file_name: /tmp/tmptJ6mba_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+- feature: sequence
+  feature_group: control_flow
+  file_name: /tmp/tmptJ6mba_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+description: "This test takes in a value from a taint source.\n Math is performed\
+  \ on the value such that, if the\n value is 32767 or 32766, the resultant value\
+  \ 'wraps around',\n and becomes negative.  This results in an infinite loop.\n"
+io_pair:
+  benigns:
+  - inputs:
+    - id: source
+      name: PREVIGILANTLY_ACETOXIME
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: '2000'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - id: source
+      name: PREVIGILANTLY_ACETOXIME
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: '4000'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable defining test value.
+
+    '
+  exploits:
+  - inputs:
+    - id: source
+      name: PREVIGILANTLY_ACETOXIME
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: '32767'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - id: source
+      name: PREVIGILANTLY_ACETOXIME
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: '32766'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmptJ6mba_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+- entry_point_type: CROSSOVER_POINT
+  file_name: /tmp/tmptJ6mba_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'

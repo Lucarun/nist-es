@@ -1,0 +1,119 @@
+code_complexity_features:
+- feature: FILE_CONTENTS
+  feature_group: source_taint
+  file_name: /tmp/tmppfVGNZ_ss_testcase/src/src/main/java/org/elasticsearch/indices/InternalIndicesService.java
+  function_name: indexServiceSafe
+  line_number: '0'
+- feature: array
+  feature_group: data_type
+  file_name: /tmp/tmppfVGNZ_ss_testcase/src/src/main/java/org/elasticsearch/indices/InternalIndicesService.java
+  function_name: indexServiceSafe
+  line_number: '0'
+- feature: address_as_function_return_value
+  feature_group: data_flow
+  file_name: /tmp/tmppfVGNZ_ss_testcase/src/src/main/java/org/elasticsearch/indices/InternalIndicesService.java
+  function_name: indexServiceSafe
+  line_number: '0'
+- feature: infinite_loop
+  feature_group: control_flow
+  file_name: /tmp/tmppfVGNZ_ss_testcase/src/src/main/java/org/elasticsearch/indices/InternalIndicesService.java
+  function_name: indexServiceSafe
+  line_number: '0'
+description: 'This test takes a string.  It locks a lock upon encountering the first
+  a/A in the string, using one lock for lower case a and a different lock for upper
+  case A.  Upon encountering a second a/A in the string, it unlocks the lower case
+  lock.  If an A appears before an a, then the lock is unlocked without previously
+  being locked, resulting in an exception.
+
+  '
+io_pair:
+  benigns:
+  - inputs:
+    - name: STABLEFUL_ANTITROPIC
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/torturesome_platycarya.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/torturesome_platycarya.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: abcdabcd
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: STABLEFUL_ANTITROPIC
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/torturesome_platycarya.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/torturesome_platycarya.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: abababa
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: STABLEFUL_ANTITROPIC
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/torturesome_platycarya.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/torturesome_platycarya.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: abABababab
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable defining string value.
+
+    '
+  exploits:
+  - inputs:
+    - name: STABLEFUL_ANTITROPIC
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/torturesome_platycarya.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/torturesome_platycarya.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: ABab
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: STABLEFUL_ANTITROPIC
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/torturesome_platycarya.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/torturesome_platycarya.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: 04A04a
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmppfVGNZ_ss_testcase/src/src/main/java/org/elasticsearch/indices/InternalIndicesService.java
+  function_name: unlockA
+  line_number: '0'

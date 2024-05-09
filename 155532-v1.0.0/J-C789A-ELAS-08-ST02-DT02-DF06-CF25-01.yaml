@@ -1,0 +1,121 @@
+code_complexity_features:
+- feature: FILE_CONTENTS
+  feature_group: source_taint
+  file_name: /tmp/tmpGAWdAR_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+- feature: simple
+  feature_group: data_type
+  file_name: /tmp/tmpGAWdAR_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+- feature: address_as_function_return_value
+  feature_group: data_flow
+  file_name: /tmp/tmpGAWdAR_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+- feature: break_with_label
+  feature_group: control_flow
+  file_name: /tmp/tmpGAWdAR_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+description: 'This test takes a number from the user, and attempts to allocate, initialize,
+  and print out an array of that size. If the number is too large, memory allocation
+  will fail and the program will subsequently crash.
+
+  '
+io_pair:
+  benigns:
+  - inputs:
+    - name: LECIDEINE_DERMATOPNAGIC
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/bourout_eutrophy.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/bourout_eutrophy.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '2000'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: LECIDEINE_DERMATOPNAGIC
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/bourout_eutrophy.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/bourout_eutrophy.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '10'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: LECIDEINE_DERMATOPNAGIC
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/bourout_eutrophy.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/bourout_eutrophy.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '10000'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable
+
+    '
+  exploits:
+  - inputs:
+    - name: LECIDEINE_DERMATOPNAGIC
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/bourout_eutrophy.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/bourout_eutrophy.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '1000000000'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: LECIDEINE_DERMATOPNAGIC
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/bourout_eutrophy.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/bourout_eutrophy.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '1034567890'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: CROSSOVER_POINT
+  file_name: /tmp/tmpGAWdAR_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmpGAWdAR_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'

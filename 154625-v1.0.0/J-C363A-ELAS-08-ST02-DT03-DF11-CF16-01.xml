@@ -1,0 +1,1091 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project base_program="J-ELAS" language="JAVA" name="J-C363A-ELAS-08-ST02-DT03-DF11-CF16-01" targeted_architecture="ANY" targeted_os="LINUX" test_case_type="ALL" xmlns="urn:stonesoup:project">
+    <description>This test takes an integer followed by a filename as input (int filename), and checks that the file exists, is in the current directory, and is not a symbolic link. However the weakness takes some time before opening the file allowing a time of check, time of use vulnerability. This vulnerability allows an attacker to replace the file with a symbolic link to a file outside of the current directory during the time between checking the file's validity and opening it.
+</description>
+    <additional_information>
+        <keyvalue key="kill_command">TRUE</keyvalue>
+        <keyvalue key="JAVA_MAIN">org.elasticsearch.bootstrap.Elasticsearch</keyvalue>
+        <keyvalue key="JAVA_CLASSPATH">$SS_TC_DEPS/java/elasticsearch/*:$SS_TC_ROOT/$SS_TC_INSTALL/*:$SS_TC_ROOT/$SS_TC_INSTALL/classes/*:$SS_TC_DEPS/java/stonesoup/lttng/lttng-stonesoup-0.1.jar</keyvalue>
+        <keyvalue key="algorithmic_variant_name">UNSPECIFIED</keyvalue>
+        <keyvalue key="root_cause">UNSPECIFIED</keyvalue>
+    </additional_information>
+    <structure install="install" iodata="testData" scoredata="testOutput" scripts="scripts" source="src"/>
+    <run_command>java $SS_JAVA_OPTS -Djava.library.path=$SS_TC_DEPS/lib64/ -cp &quot;$SS_JAVA_CLASSPATH&quot;</run_command>
+    <weakness generation_method="FAULT_INJECTED">
+        <variant cwe="CWE-363" name="CWE-363-A">
+            <crossover_point file_name="/tmp/tmpgqMJWo_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java" line_number="0">
+                <method name="handleRequest"/>
+            </crossover_point>
+            <trigger_point file_name="/tmp/tmpgqMJWo_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java" line_number="0">
+                <method name="handleRequest"/>
+            </trigger_point>
+        </variant>
+        <features>
+            <taint_source file_name="/tmp/tmpgqMJWo_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java" line_number="0" type="FILE_CONTENTS">
+                <method name="handleRequest"/>
+            </taint_source>
+            <data_type file_name="/tmp/tmpgqMJWo_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java" line_number="0" type="VOID_POINTER">
+                <method name="handleRequest"/>
+            </data_type>
+            <data_flow file_name="/tmp/tmpgqMJWo_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java" line_number="0" type="BASIC">
+                <method name="handleRequest"/>
+            </data_flow>
+            <control_flow file_name="/tmp/tmpgqMJWo_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java" line_number="0" type="INTERRUPT">
+                <method name="handleRequest"/>
+            </control_flow>
+        </features>
+    </weakness>
+    <build_commands>
+        <command>env ANT_HOME=$SS_TC_DEPS/ant ant $SS_ANT_OPTS -Dstonesoup.database.postgres.required=no -Dstonesoup.hibernate.postgres.required=no -Dstonesoup.hibernate.mysql.required=no -Dstonesoup.database.mysql.required=no -Dstonesoup.socket.required=no -lib $SS_TC_DEPS/java/stonesoup/lttng/lttng-stonesoup-0.1.jar -Dstonesoup.socket.lib.dir=&quot;$SS_TC_DEPS/java/stonesoup/socket&quot; -Dstonesoup.hibernate.mysql.lib.dir=&quot;$SS_TC_DEPS/java/stonesoup/hibernate/mysql&quot; -Dstonesoup.hibernate.postgres.lib.dir=&quot;$SS_TC_DEPS/java/stonesoup/hibernate/postgres&quot; -Dstonesoup.database.mysql.lib.dir=&quot;$SS_TC_DEPS/java/stonesoup/database/mysql&quot; -Dstonesoup.database.postgres.lib.dir=&quot;$SS_TC_DEPS/java/stonesoup/database/postgres&quot;  -Dmaven.build.dir=$SS_TC_ROOT/$SS_TC_INSTALL -Dmaven.repo.local=&quot;$SS_TC_DEPS/java/elasticsearch&quot; -Dmaven.settings.offline=true -Dstonesoup.lttng.lib.dir=&quot;$SS_TC_DEPS/java/stonesoup/lttng&quot; -Dstonesoup.lttng.dummy.lib.dir=&quot;$SS_TC_DEPS/java/stonesoup/lttng-dummy&quot; package</command>
+    </build_commands>
+    <iopairs>
+        <iopair name="J-C363A-ELAS-08-ST02-DT03-DF11-CF16-01-GOOD-01" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>Add data
+Environment variable defining string value.
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env KNICKERBOCKERS_ALBUMOSCOPE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="KNICKERBOCKERS_ALBUMOSCOPE" type="USE_TEXT">$SS_TC_ROOT/testData/avicennia_unbeaconed.bin</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="$SS_TC_ROOT/testData/avicennia_unbeaconed.bin" type="USE_TEXT">/opt/stonesoup/workspace/testData/file1 good_01.txt</file>
+                </process>
+                <process>
+                    <file encoding="STRING" path="good_01.txt" type="USE_TEXT">FILE DATA GOES HERE YO</file>
+                </process>
+                <process>
+                    <file encoding="STRING" path="file1" type="USE_TEXT">None</file>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">nohup preprocess_daemon_script_01.sh &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.out 2&gt;&amp;1 &amp; echo $! &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid &amp;&amp; echo &quot;Script spawned&quot;</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-01&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-01-CURL" type="USE_TEXT">curl -XPUT 'http://ss-localhost:9200/movies/movie/1' -d '{&quot;title&quot;:&quot;The Godfather&quot;,&quot;director&quot;:&quot;Francis Ford Coppola&quot;,&quot;year&quot;:1972}'</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_xcNXH0Dfl0" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">if [[ -f &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot; ]]; then killtree.sh -s 9 -p $(cat &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot;) &amp;&amp; echo &quot;Killed script.&quot;; else echo &quot;Failed: Script PID file does not exist.&quot;; fi</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-01-Default">
+                <formula name="GOOD-01-Default">GOOD-01 AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="GOOD-01">
+                    <actual encoding="STRING" input_id_ref="GOOD-01-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-01/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C363A-ELAS-08-ST02-DT03-DF11-CF16-01-GOOD-02" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>simple string query
+Environment variable defining string value.
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env KNICKERBOCKERS_ALBUMOSCOPE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="KNICKERBOCKERS_ALBUMOSCOPE" type="USE_TEXT">$SS_TC_ROOT/testData/avicennia_unbeaconed.bin</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="$SS_TC_ROOT/testData/avicennia_unbeaconed.bin" type="USE_TEXT">/opt/stonesoup/workspace/testData/file2 good_02.txt</file>
+                </process>
+                <process>
+                    <file encoding="STRING" path="good_02.txt" type="USE_TEXT">what does this file even mean?</file>
+                </process>
+                <process>
+                    <file encoding="STRING" path="file2" type="USE_TEXT">None</file>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">nohup preprocess_daemon_script_01.sh &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.out 2&gt;&amp;1 &amp; echo $! &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid &amp;&amp; echo &quot;Script spawned&quot;</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-02&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-02-CURL" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_search' -d '{&quot;query&quot;: {&quot;query_string&quot;: {&quot;query&quot;: &quot;kill&quot;}}}'</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_BUso9p7B5b" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">if [[ -f &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot; ]]; then killtree.sh -s 9 -p $(cat &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot;) &amp;&amp; echo &quot;Killed script.&quot;; else echo &quot;Failed: Script PID file does not exist.&quot;; fi</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-02-Default">
+                <formula name="GOOD-02-Default">GOOD-02 AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="GOOD-02">
+                    <actual encoding="STRING" input_id_ref="GOOD-02-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-02/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C363A-ELAS-08-ST02-DT03-DF11-CF16-01-GOOD-03" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>get all data
+Environment variable defining string value.
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env KNICKERBOCKERS_ALBUMOSCOPE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="KNICKERBOCKERS_ALBUMOSCOPE" type="USE_TEXT">$SS_TC_ROOT/testData/avicennia_unbeaconed.bin</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="$SS_TC_ROOT/testData/avicennia_unbeaconed.bin" type="USE_TEXT">/opt/stonesoup/workspace/testData/file3 good_03.txt</file>
+                </process>
+                <process>
+                    <file encoding="STRING" path="good_03.txt" type="USE_TEXT">Brah, ...bro, like, woah...</file>
+                </process>
+                <process>
+                    <file encoding="STRING" path="file3" type="USE_TEXT">None</file>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">nohup preprocess_daemon_script_01.sh &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.out 2&gt;&amp;1 &amp; echo $! &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid &amp;&amp; echo &quot;Script spawned&quot;</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-03&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-03-CURL" type="USE_TEXT">curl -XGET 'http://ss-localhost:9200/_search' -d '{ &quot;query&quot;: { &quot;matchAll&quot; : {} }}'</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_pxbnAiT6gA" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">if [[ -f &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot; ]]; then killtree.sh -s 9 -p $(cat &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot;) &amp;&amp; echo &quot;Killed script.&quot;; else echo &quot;Failed: Script PID file does not exist.&quot;; fi</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-03-Default">
+                <formula name="GOOD-03-Default">GOOD-03 AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="GOOD-03">
+                    <actual encoding="STRING" input_id_ref="GOOD-03-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-03/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C363A-ELAS-08-ST02-DT03-DF11-CF16-01-GOOD-04" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>add data
+Environment variable defining string value.
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env KNICKERBOCKERS_ALBUMOSCOPE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="KNICKERBOCKERS_ALBUMOSCOPE" type="USE_TEXT">$SS_TC_ROOT/testData/avicennia_unbeaconed.bin</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="$SS_TC_ROOT/testData/avicennia_unbeaconed.bin" type="USE_TEXT">/opt/stonesoup/workspace/testData/file1 good_01.txt</file>
+                </process>
+                <process>
+                    <file encoding="STRING" path="good_01.txt" type="USE_TEXT">FILE DATA GOES HERE YO</file>
+                </process>
+                <process>
+                    <file encoding="STRING" path="file1" type="USE_TEXT">None</file>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">nohup preprocess_daemon_script_01.sh &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.out 2&gt;&amp;1 &amp; echo $! &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid &amp;&amp; echo &quot;Script spawned&quot;</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-04&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-04-CURL" type="USE_TEXT">curl -XPUT 'http://ss-localhost:9200/user/starfleet/40' -d '{ &quot;name&quot; : &quot;Picard&quot;, &quot;rank&quot; : &quot;Captain&quot; }'</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_Rq4QVJ7Czn" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">if [[ -f &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot; ]]; then killtree.sh -s 9 -p $(cat &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot;) &amp;&amp; echo &quot;Killed script.&quot;; else echo &quot;Failed: Script PID file does not exist.&quot;; fi</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-04-Default">
+                <formula name="GOOD-04-Default">OUTPUT AND (STATE-EXISTS AND STATE-HAS-CONTENT) AND (GLOBAL-EXISTS AND GLOBAL-HAS-CONTENT) AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="OUTPUT">
+                    <actual encoding="STRING" input_id_ref="GOOD-04-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-04/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SCRIPT" encoding="STRING" name="STATE-EXISTS" type="USE_TEXT">
+                    if [[ -a good-04/elasticsearch/nodes/0/indices/user/0/_state/state-2 ]]; then exit 0; else exit 1; fi;
+                </simple_check>
+                <simple_check check_type="SCRIPT" encoding="STRING" name="GLOBAL-EXISTS" type="USE_TEXT">
+                    if [[ -a good-04/elasticsearch/nodes/0/_state/global-4 ]]; then exit 0; else exit 1; fi;
+                </simple_check>
+                <simple_check check_type="SCRIPT" encoding="STRING" name="STATE-HAS-CONTENT" type="USE_TEXT">
+                    if [[ -s good-04/elasticsearch/nodes/0/indices/user/0/_state/state-2 ]]; then exit 0; else exit 1; fi;
+                </simple_check>
+                <simple_check check_type="SCRIPT" encoding="STRING" name="GLOBAL-HAS-CONTENT" type="USE_TEXT">
+                    if [[ -s good-04/elasticsearch/nodes/0/_state/global-4 ]]; then exit 0; else exit 1; fi;
+                </simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C363A-ELAS-08-ST02-DT03-DF11-CF16-01-GOOD-05" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>delete data
+Environment variable defining string value.
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env KNICKERBOCKERS_ALBUMOSCOPE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="KNICKERBOCKERS_ALBUMOSCOPE" type="USE_TEXT">$SS_TC_ROOT/testData/avicennia_unbeaconed.bin</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="$SS_TC_ROOT/testData/avicennia_unbeaconed.bin" type="USE_TEXT">/opt/stonesoup/workspace/testData/file2 good_02.txt</file>
+                </process>
+                <process>
+                    <file encoding="STRING" path="good_02.txt" type="USE_TEXT">what does this file even mean?</file>
+                </process>
+                <process>
+                    <file encoding="STRING" path="file2" type="USE_TEXT">None</file>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">nohup preprocess_daemon_script_01.sh &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.out 2&gt;&amp;1 &amp; echo $! &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid &amp;&amp; echo &quot;Script spawned&quot;</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-05&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-05-CURL" type="USE_TEXT">curl -XDELETE 'http://ss-localhost:9200/movies/movie/1' -d '{ &quot;year&quot;: 1962&quot; }'</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_O3Q2pcZM12" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">if [[ -f &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot; ]]; then killtree.sh -s 9 -p $(cat &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot;) &amp;&amp; echo &quot;Killed script.&quot;; else echo &quot;Failed: Script PID file does not exist.&quot;; fi</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-05-Default">
+                <formula name="GOOD-05-Default">OUTPUT AND (GLOBAL-EXISTS AND GLOBAL-HAS-CONTENT) AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="OUTPUT">
+                    <actual encoding="STRING" input_id_ref="GOOD-05-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-05/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SCRIPT" encoding="STRING" name="GLOBAL-EXISTS" type="USE_TEXT">
+                    if [[ -a good-05/elasticsearch/nodes/0/_state/global-5 ]]; then exit 0; else exit 1; fi;
+                </simple_check>
+                <simple_check check_type="SCRIPT" encoding="STRING" name="GLOBAL-HAS-CONTENT" type="USE_TEXT">
+                   if [[ -s good-05/elasticsearch/nodes/0/_state/global-5 ]]; then exit 0; else exit 1; fi;
+                </simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C363A-ELAS-08-ST02-DT03-DF11-CF16-01-GOOD-06" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>bulk add data
+Environment variable defining string value.
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env KNICKERBOCKERS_ALBUMOSCOPE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="KNICKERBOCKERS_ALBUMOSCOPE" type="USE_TEXT">$SS_TC_ROOT/testData/avicennia_unbeaconed.bin</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="$SS_TC_ROOT/testData/avicennia_unbeaconed.bin" type="USE_TEXT">/opt/stonesoup/workspace/testData/file3 good_03.txt</file>
+                </process>
+                <process>
+                    <file encoding="STRING" path="good_03.txt" type="USE_TEXT">Brah, ...bro, like, woah...</file>
+                </process>
+                <process>
+                    <file encoding="STRING" path="file3" type="USE_TEXT">None</file>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">nohup preprocess_daemon_script_01.sh &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.out 2&gt;&amp;1 &amp; echo $! &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid &amp;&amp; echo &quot;Script spawned&quot;</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-06&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-06-CURL" type="USE_TEXT">curl -XPUT localhost:9200/_bulk --data-binary @good-06/shakespeare.json</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_Aam5Zsphgw" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">if [[ -f &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot; ]]; then killtree.sh -s 9 -p $(cat &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot;) &amp;&amp; echo &quot;Killed script.&quot;; else echo &quot;Failed: Script PID file does not exist.&quot;; fi</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-06-Default">
+                <formula name="GOOD-06-Default">HEAD AND TAIL AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="HEAD">
+                    <actual encoding="STRING" input_id_ref="GOOD-06-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-06/head.txt</expected>
+                </compare_check>
+                <compare_check check_type="CONTAINS" name="TAIL">
+                    <actual encoding="STRING" input_id_ref="GOOD-06-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-06/tail.txt</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C363A-ELAS-08-ST02-DT03-DF11-CF16-01-GOOD-07" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>filter without search query
+Environment variable defining string value.
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env KNICKERBOCKERS_ALBUMOSCOPE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="KNICKERBOCKERS_ALBUMOSCOPE" type="USE_TEXT">$SS_TC_ROOT/testData/avicennia_unbeaconed.bin</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="$SS_TC_ROOT/testData/avicennia_unbeaconed.bin" type="USE_TEXT">/opt/stonesoup/workspace/testData/file1 good_01.txt</file>
+                </process>
+                <process>
+                    <file encoding="STRING" path="good_01.txt" type="USE_TEXT">FILE DATA GOES HERE YO</file>
+                </process>
+                <process>
+                    <file encoding="STRING" path="file1" type="USE_TEXT">None</file>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">nohup preprocess_daemon_script_01.sh &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.out 2&gt;&amp;1 &amp; echo $! &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid &amp;&amp; echo &quot;Script spawned&quot;</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-07&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-07-CURL" type="USE_TEXT">curl -XPOST &quot;http://localhost:9200/_search&quot; -d '{ &quot;query&quot;: { &quot;filtered&quot;: { &quot;query&quot;: { &quot;match_all&quot;: {} }, &quot;filter&quot;: {&quot;term&quot;: { &quot;year&quot;: 1962 }}}}}'</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_6loMX6vrlv" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">if [[ -f &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot; ]]; then killtree.sh -s 9 -p $(cat &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot;) &amp;&amp; echo &quot;Killed script.&quot;; else echo &quot;Failed: Script PID file does not exist.&quot;; fi</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-07-Default">
+                <formula name="GOOD-07-Default">OUTPUT AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="OUTPUT">
+                    <actual encoding="STRING" input_id_ref="GOOD-07-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-07/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C363A-ELAS-08-ST02-DT03-DF11-CF16-01-GOOD-08" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>tokenize with snowball analyzer
+Environment variable defining string value.
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env KNICKERBOCKERS_ALBUMOSCOPE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="KNICKERBOCKERS_ALBUMOSCOPE" type="USE_TEXT">$SS_TC_ROOT/testData/avicennia_unbeaconed.bin</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="$SS_TC_ROOT/testData/avicennia_unbeaconed.bin" type="USE_TEXT">/opt/stonesoup/workspace/testData/file2 good_02.txt</file>
+                </process>
+                <process>
+                    <file encoding="STRING" path="good_02.txt" type="USE_TEXT">what does this file even mean?</file>
+                </process>
+                <process>
+                    <file encoding="STRING" path="file2" type="USE_TEXT">None</file>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">nohup preprocess_daemon_script_01.sh &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.out 2&gt;&amp;1 &amp; echo $! &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid &amp;&amp; echo &quot;Script spawned&quot;</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-08&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-08-LOAD" type="USE_TEXT">curl -XPUT localhost:9200/_bulk --data-binary @good-06/shakespeare.json</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-08-SEARCH" type="USE_TEXT">curl -XPOST http://ss-localhost:9200/_search?pretty=true -d'{&quot;query&quot;: {&quot;query_string&quot;: {&quot;query&quot;: &quot;WESTMORELAND&quot;}}, &quot;sort&quot;: &quot;_id&quot;}'</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_5XDlzR4P9G" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">if [[ -f &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot; ]]; then killtree.sh -s 9 -p $(cat &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot;) &amp;&amp; echo &quot;Killed script.&quot;; else echo &quot;Failed: Script PID file does not exist.&quot;; fi</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-08-Default">
+                <formula name="GOOD-08-Default">HEAD AND TAIL AND SEARCH AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="HEAD">
+                    <actual encoding="STRING" input_id_ref="GOOD-08-LOAD" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-08/head.txt</expected>
+                </compare_check>
+                <compare_check check_type="CONTAINS" name="TAIL">
+                    <actual encoding="STRING" input_id_ref="GOOD-08-LOAD" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-08/tail.txt</expected>
+                </compare_check>
+                <compare_check check_type="CONTAINS" name="SEARCH">
+                    <actual encoding="STRING" input_id_ref="GOOD-08-SEARCH" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-08/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C363A-ELAS-08-ST02-DT03-DF11-CF16-01-GOOD-09" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>list indicies
+Environment variable defining string value.
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env KNICKERBOCKERS_ALBUMOSCOPE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="KNICKERBOCKERS_ALBUMOSCOPE" type="USE_TEXT">$SS_TC_ROOT/testData/avicennia_unbeaconed.bin</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="$SS_TC_ROOT/testData/avicennia_unbeaconed.bin" type="USE_TEXT">/opt/stonesoup/workspace/testData/file3 good_03.txt</file>
+                </process>
+                <process>
+                    <file encoding="STRING" path="good_03.txt" type="USE_TEXT">Brah, ...bro, like, woah...</file>
+                </process>
+                <process>
+                    <file encoding="STRING" path="file3" type="USE_TEXT">None</file>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">nohup preprocess_daemon_script_01.sh &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.out 2&gt;&amp;1 &amp; echo $! &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid &amp;&amp; echo &quot;Script spawned&quot;</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-09&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-09-CURL" type="USE_TEXT">curl -XGET &quot;http://localhost:9200/_cat/indices&quot;</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_BgPdaxOtGs" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">if [[ -f &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot; ]]; then killtree.sh -s 9 -p $(cat &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot;) &amp;&amp; echo &quot;Killed script.&quot;; else echo &quot;Failed: Script PID file does not exist.&quot;; fi</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-09-Default">
+                <formula name="GOOD-09-Default">OUTPUT AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="OUTPUT">
+                    <actual encoding="STRING" input_id_ref="GOOD-09-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_TEXT">movies 5 1 6 0 14.7kb 14.7kb</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C363A-ELAS-08-ST02-DT03-DF11-CF16-01-GOOD-10" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>drilling down
+Environment variable defining string value.
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env KNICKERBOCKERS_ALBUMOSCOPE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="KNICKERBOCKERS_ALBUMOSCOPE" type="USE_TEXT">$SS_TC_ROOT/testData/avicennia_unbeaconed.bin</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="$SS_TC_ROOT/testData/avicennia_unbeaconed.bin" type="USE_TEXT">/opt/stonesoup/workspace/testData/file1 good_01.txt</file>
+                </process>
+                <process>
+                    <file encoding="STRING" path="good_01.txt" type="USE_TEXT">FILE DATA GOES HERE YO</file>
+                </process>
+                <process>
+                    <file encoding="STRING" path="file1" type="USE_TEXT">None</file>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">nohup preprocess_daemon_script_01.sh &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.out 2&gt;&amp;1 &amp; echo $! &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid &amp;&amp; echo &quot;Script spawned&quot;</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-10&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-10-CURL" type="USE_TEXT">curl -XPOST http://ss-localhost:9200/products/_search?pretty=true { &quot;query&quot;: { &quot;filtered&quot;: { &quot;query&quot;: { &quot;match&quot;: {&quot;_all&quot;: &quot;network routing&quot;}}, &quot;filter&quot;: { &quot;and&quot;: [ {&quot;range&quot;: {&quot;price&quot;: {&quot;gte&quot;: 0, &quot;lte&quot;: 5000}}} ]} }}, &quot;facets&quot;:{ &quot;department_id&quot;: {&quot;terms&quot;: {&quot;field&quot;: &quot;department_id&quot;}}, &quot;department_name&quot;: {&quot;terms&quot;: {&quot;field&quot;: &quot;department_name&quot;}}, &quot;price&quot;: {&quot;histogram&quot;: {&quot;field&quot;: &quot;price&quot;, &quot;interval&quot;: 5000}}} }</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_XUSgCw98U0" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">if [[ -f &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot; ]]; then killtree.sh -s 9 -p $(cat &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot;) &amp;&amp; echo &quot;Killed script.&quot;; else echo &quot;Failed: Script PID file does not exist.&quot;; fi</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-10-Default">
+                <formula name="GOOD-10-Default">OUTPUT AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="OUTPUT">
+                    <actual encoding="STRING" input_id_ref="GOOD-10-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-10/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C363A-ELAS-08-ST02-DT03-DF11-CF16-01-BAD-01" reset_scheme="NONE" timeout="300" type="BAD">
+            <description>Environment variable defining string value.
+</description>
+            <technical_impact>UNEXPECTED_STATE</technical_impact>
+            <technical_impact>READ_APPLICATION_DATA</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env KNICKERBOCKERS_ALBUMOSCOPE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="KNICKERBOCKERS_ALBUMOSCOPE" type="USE_TEXT">$SS_TC_ROOT/testData/avicennia_unbeaconed.bin</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="$SS_TC_ROOT/testData/avicennia_unbeaconed.bin" type="USE_TEXT">/opt/stonesoup/workspace/testData/fifo1 bad_0.txt</file>
+                </process>
+                <process>
+                    <file encoding="STRING" path="bad_0.txt" type="USE_TEXT">HACK THE PLANET! HACK THE PLANET!!!</file>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">nohup runFifos.py /opt/stonesoup/workspace/testData/fifo1 --nosync &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.out 2&gt;&amp;1 &amp; echo $! &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid &amp;&amp; echo &quot;Script spawned&quot;</script>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">nohup preprocess_daemon_script_02.sh &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_02.out 2&gt;&amp;1 &amp; echo $! &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_02.pid &amp;&amp; echo &quot;Script spawned&quot;</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-08&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                </process>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                </process>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" input_id="GOOD-08-LOADZA9On2vIyX" type="USE_TEXT">curl -XPUT localhost:9200/_bulk --data-binary @good-06/shakespeare.json</script>
+                </process>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" input_id="GOOD-08-SEARCH7Dpu5hJA8B" type="USE_TEXT">curl -XPOST http://ss-localhost:9200/_search?pretty=true -d'{&quot;query&quot;: {&quot;query_string&quot;: {&quot;query&quot;: &quot;WESTMORELAND&quot;}}, &quot;sort&quot;: &quot;_id&quot;}'</script>
+                </process>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_sL3AK5GGTXyi13Y9MMpb" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">if [[ -f &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot; ]]; then killtree.sh -s 9 -p $(cat &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot;) &amp;&amp; echo &quot;Killed script.&quot;; else echo &quot;Failed: Script PID file does not exist.&quot;; fi</script>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">if [[ -f &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_02.pid&quot; ]]; then killtree.sh -s 9 -p $(cat &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_02.pid&quot;) &amp;&amp; echo &quot;Killed script.&quot;; else echo &quot;Failed: Script PID file does not exist.&quot;; fi</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="read_formula_pmRnrzX3WL">
+                <formula name="read_formula_pmRnrzX3WL">weakness_started_FIrs7ddR2fLBacNYrzY5 AND ((NOT PERFORMER AND (etc_passwd_line_pattern_YTfBkDKtCg OR etc_passwd_root_user_OioyyX9K6L) AND NOT timeout_BTufLfpgSB) or (PERFORMER AND NOT ((etc_passwd_line_pattern_YTfBkDKtCg OR etc_passwd_root_user_OioyyX9K6L) OR timeout_BTufLfpgSB OR controlled_exit_3tj54eIssu)))</formula>
+                <formula name="no_weakness_started_formula_Cs6NscU9Ap">(NOT PERFORMER AND (etc_passwd_line_pattern_YTfBkDKtCg OR etc_passwd_root_user_OioyyX9K6L) AND NOT timeout_BTufLfpgSB) or (PERFORMER AND NOT ((etc_passwd_line_pattern_YTfBkDKtCg OR etc_passwd_root_user_OioyyX9K6L) OR timeout_BTufLfpgSB OR controlled_exit_3tj54eIssu))</formula>
+            </scoring_formula>
+            <output_checks>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="timeout_BTufLfpgSB" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="controlled_exit_3tj54eIssu" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="continued_execution_yNYhDyXClt" type="USE_TEXT">CONTINUED_EXECUTION</simple_check>
+                <compare_check check_type="REGEX" name="etc_passwd_line_pattern_YTfBkDKtCg">
+                    <actual encoding="STRING" output_type="FILE_CONTENTS">logfile.txt</actual>
+                    <expected encoding="STRING" type="USE_TEXT">.+:.+:[0-9]+:[0-9]+:.+:.+:.*</expected>
+                </compare_check>
+                <compare_check check_type="REGEX" name="etc_passwd_root_user_OioyyX9K6L">
+                    <actual encoding="STRING" output_type="FILE_CONTENTS">logfile.txt</actual>
+                    <expected encoding="STRING" type="USE_TEXT">^root:.*</expected>
+                </compare_check>
+                <compare_check check_type="CONTAINS" name="weakness_started_FIrs7ddR2fLBacNYrzY5">
+                    <actual encoding="STRING" input_id_ref="lttng_output_sL3AK5GGTXyi13Y9MMpb" output_type="STANDARD_OUT">None</actual>
+                    <expected encoding="STRING" type="USE_TEXT">stonesoup_trace:weakness_start</expected>
+                </compare_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C363A-ELAS-08-ST02-DT03-DF11-CF16-01-BAD-02" reset_scheme="NONE" timeout="300" type="BAD">
+            <description>Environment variable defining string value.
+</description>
+            <technical_impact>UNEXPECTED_STATE</technical_impact>
+            <technical_impact>READ_APPLICATION_DATA</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env KNICKERBOCKERS_ALBUMOSCOPE;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="KNICKERBOCKERS_ALBUMOSCOPE" type="USE_TEXT">$SS_TC_ROOT/testData/avicennia_unbeaconed.bin</environment_variable>
+                </process>
+                <process>
+                    <file encoding="STRING" path="$SS_TC_ROOT/testData/avicennia_unbeaconed.bin" type="USE_TEXT">/opt/stonesoup/workspace/testData/fifo1 bad_1.txt</file>
+                </process>
+                <process>
+                    <file encoding="STRING" path="bad_1.txt" type="USE_TEXT">1337 s&lt;r1p7 15 f0r h4x0rz</file>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">nohup preprocess_daemon_script_01.sh &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.out 2&gt;&amp;1 &amp; echo $! &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid &amp;&amp; echo &quot;Script spawned&quot;</script>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">nohup runFifos.py /opt/stonesoup/workspace/testData/fifo1 --nosync &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_02.out 2&gt;&amp;1 &amp; echo $! &gt; /opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_02.pid &amp;&amp; echo &quot;Script spawned&quot;</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-03&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                </process>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                </process>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" input_id="GOOD-03-CURLzReT2svWQ8" type="USE_TEXT">curl -XGET 'http://ss-localhost:9200/_search' -d '{ &quot;query&quot;: { &quot;matchAll&quot; : {} }}'</script>
+                </process>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_lAuYPptnrfUFv0zOtvEH" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">if [[ -f &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot; ]]; then killtree.sh -s 9 -p $(cat &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_01.pid&quot;) &amp;&amp; echo &quot;Killed script.&quot;; else echo &quot;Failed: Script PID file does not exist.&quot;; fi</script>
+                </process>
+                <process delay_after="2">
+                    <script background="false" encoding="STRING" type="USE_TEXT">if [[ -f &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_02.pid&quot; ]]; then killtree.sh -s 9 -p $(cat &quot;/opt/stonesoup/workspace/inputDaemons/preprocess_daemon_script_02.pid&quot;) &amp;&amp; echo &quot;Killed script.&quot;; else echo &quot;Failed: Script PID file does not exist.&quot;; fi</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="read_formula_1Wo3nfWqnf">
+                <formula name="read_formula_1Wo3nfWqnf">weakness_started_kTqV4wTie3cyGFCCR4Sy AND ((NOT PERFORMER AND (etc_passwd_line_pattern_IXYLap3wiO OR etc_passwd_root_user_ubLnS9T3BS) AND NOT timeout_jS0snOHLto) or (PERFORMER AND NOT ((etc_passwd_line_pattern_IXYLap3wiO OR etc_passwd_root_user_ubLnS9T3BS) OR timeout_jS0snOHLto OR controlled_exit_oY3P2rhJPP)))</formula>
+                <formula name="no_weakness_started_formula_521paJcIMk">(NOT PERFORMER AND (etc_passwd_line_pattern_IXYLap3wiO OR etc_passwd_root_user_ubLnS9T3BS) AND NOT timeout_jS0snOHLto) or (PERFORMER AND NOT ((etc_passwd_line_pattern_IXYLap3wiO OR etc_passwd_root_user_ubLnS9T3BS) OR timeout_jS0snOHLto OR controlled_exit_oY3P2rhJPP))</formula>
+            </scoring_formula>
+            <output_checks>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="timeout_jS0snOHLto" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="controlled_exit_oY3P2rhJPP" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="continued_execution_Xejp6eD9aN" type="USE_TEXT">CONTINUED_EXECUTION</simple_check>
+                <compare_check check_type="REGEX" name="etc_passwd_line_pattern_IXYLap3wiO">
+                    <actual encoding="STRING" output_type="FILE_CONTENTS">logfile.txt</actual>
+                    <expected encoding="STRING" type="USE_TEXT">.+:.+:[0-9]+:[0-9]+:.+:.+:.*</expected>
+                </compare_check>
+                <compare_check check_type="REGEX" name="etc_passwd_root_user_ubLnS9T3BS">
+                    <actual encoding="STRING" output_type="FILE_CONTENTS">logfile.txt</actual>
+                    <expected encoding="STRING" type="USE_TEXT">^root:.*</expected>
+                </compare_check>
+                <compare_check check_type="CONTAINS" name="weakness_started_kTqV4wTie3cyGFCCR4Sy">
+                    <actual encoding="STRING" input_id_ref="lttng_output_lAuYPptnrfUFv0zOtvEH" output_type="STANDARD_OUT">None</actual>
+                    <expected encoding="STRING" type="USE_TEXT">stonesoup_trace:weakness_start</expected>
+                </compare_check>
+            </output_checks>
+        </iopair>
+    </iopairs>
+</project>

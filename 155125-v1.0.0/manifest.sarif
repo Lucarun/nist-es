@@ -1,0 +1,111 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 155125,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "This test takes in a value from an argument and uses it as a array accessor resulting in an ArrayIndexOutOfBounds exception.\n\nMetadata\n-Base program: Elastic Search\n- Source Taint: SOCKET\n- Data Type: simple\n- Data Flow: var_arg_list\n- Control Flow: sequence",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C839A-ELAS-06-ST03-DT02-DF12-CF20-01.xml"
+          },
+          "length": 72646,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "43d6df4175d6d9f65c654e3f65b6a672415e41e01b9a8239fb1368ce7e32b3ec"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/indices/InternalIndicesService.java"
+          },
+          "length": 25784,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "1248b5b21d09c0651648b52803185cffbc2af8c424b06c61b0561f241b070aad"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "839",
+              "name": "Numeric Range Comparison Without Minimum Check"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-839",
+          "message": {
+            "text": "Numeric Range Comparison Without Minimum Check."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/indices/InternalIndicesService.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 573
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "839",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

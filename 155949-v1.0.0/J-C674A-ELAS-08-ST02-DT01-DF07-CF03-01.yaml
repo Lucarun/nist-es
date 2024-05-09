@@ -1,0 +1,121 @@
+code_complexity_features:
+- feature: FILE_CONTENTS
+  feature_group: source_taint
+  file_name: /tmp/tmphNDkrZ_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+- feature: array
+  feature_group: data_type
+  file_name: /tmp/tmphNDkrZ_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+- feature: index_alias_1
+  feature_group: data_flow
+  file_name: /tmp/tmphNDkrZ_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+- feature: infinite_loop
+  feature_group: control_flow
+  file_name: /tmp/tmphNDkrZ_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+description: 'This test takes a string, gets the first character, and uses a recursive
+  method to look for the index of the second occurrence of that character. If the
+  character does not appear a second time, it will recurse indefinitely.
+
+  '
+io_pair:
+  benigns:
+  - inputs:
+    - name: DISANNULMENT_FORMANT
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/septa_unplanned.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/septa_unplanned.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: asdfasdf
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: DISANNULMENT_FORMANT
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/septa_unplanned.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/septa_unplanned.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: this string has another t
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: DISANNULMENT_FORMANT
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/septa_unplanned.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/septa_unplanned.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: 1st char is 1
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable defining string value.
+
+    '
+  exploits:
+  - inputs:
+    - name: DISANNULMENT_FORMANT
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/septa_unplanned.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/septa_unplanned.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: 1st char does not appear again
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: DISANNULMENT_FORMANT
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/septa_unplanned.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/septa_unplanned.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: FEDCBA
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmphNDkrZ_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: search
+  line_number: '0'
+- entry_point_type: CROSSOVER_POINT
+  file_name: /tmp/tmphNDkrZ_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: search
+  line_number: '0'

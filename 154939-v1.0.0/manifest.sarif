@@ -1,0 +1,112 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 154939,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "This test takes in a value passed in as an\n argument and uses it to compute a divisor which is\n later used in a modulus operation.\nMetadata\n - Base program: Elastic Search\n - Source Taint: FILE_CONTENTS\n - Data Type: SIMPLE\n - Data Flow: INDEX_ALIAS_1\n - Control Flow: FUNCTION_INVOCATION_OVERLOAD",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C369A-ELAS-08-ST02-DT02-DF07-CF26-01.xml"
+          },
+          "length": 69907,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "e6d1f8549bf3ae66fbe34be85078ba4d82429fd2002852bfebbd4e45aecd7fb5"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java"
+          },
+          "length": 9316,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "cbcc96ca75af4270c9c975e76231e79bdffa17d004e1ed47256a81ff9e48d940"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "369",
+              "name": "Divide By Zero"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-369",
+          "message": {
+            "text": "Divide By Zero."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 200,
+                  "endLine": 201
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "369",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

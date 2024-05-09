@@ -1,0 +1,92 @@
+code_complexity_features:
+- feature: SOCKET
+  feature_group: source_taint
+  file_name: /tmp/tmpDj9BC0_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: doStart
+  line_number: '0'
+- feature: simple
+  feature_group: data_type
+  file_name: /tmp/tmpDj9BC0_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: doStart
+  line_number: '0'
+- feature: index_alias_1
+  feature_group: data_flow
+  file_name: /tmp/tmpDj9BC0_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: doStart
+  line_number: '0'
+- feature: break_with_label
+  feature_group: control_flow
+  file_name: /tmp/tmpDj9BC0_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: doStart
+  line_number: '0'
+description: "The system or application is vulnerable to file system contents\n disclosure\
+  \ through path equivalence. Path equivalence involves the\n use of special characters\
+  \ in file and directory names. The associated\n manipulations are intended to generate\
+  \ multiple names for the same\n object. This test will accept input of a file to\
+  \ read, but prohibits access\n to file in the /etc directory. The input generates\
+  \ an equivalent name\n /////etc/////passwd which bypasses the filter.\n"
+io_pair:
+  benigns:
+  - inputs:
+    - address: ss-localhost
+      id: source
+      ordinal: '1'
+      port: '8887'
+      source: socket_input
+      stage: co_process
+      value: /etc/passwd
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - address: ss-localhost
+      id: source
+      ordinal: '1'
+      port: '8887'
+      source: socket_input
+      stage: co_process
+      value: /etc/group
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - address: ss-localhost
+      id: source
+      ordinal: '1'
+      port: '8887'
+      source: socket_input
+      stage: co_process
+      value: /etc/sudoers
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable defining test value.
+
+    '
+  exploits:
+  - inputs:
+    - address: ss-localhost
+      id: source
+      ordinal: '1'
+      port: '8887'
+      source: socket_input
+      stage: co_process
+      value: /////etc/////passwd
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - address: ss-localhost
+      id: source
+      ordinal: '1'
+      port: '8887'
+      source: socket_input
+      stage: co_process
+      value: /./etc/group
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmpDj9BC0_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: doStart
+  line_number: '0'
+- entry_point_type: CROSSOVER_POINT
+  file_name: /tmp/tmpDj9BC0_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: doStart
+  line_number: '0'

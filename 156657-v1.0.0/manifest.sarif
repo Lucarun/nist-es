@@ -1,0 +1,112 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 156657,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "The software uses external input to construct a pathname that should be within a restricted directory, but it does not neutralize absolute path sequences such as '/abs/path' that can resolve to a location that is outside of that directory. This test takes in a filename to read. Since the provided filename isn't checked to ensure it doesn't contain an absolute path, it allows reading of any file on the system.\nMetadata\n - Base program: Elastic Search\n - Source Taint: SOCKET\n - Data Type: VOID_POINTER\n - Data Flow: ADDRESS_AS_CONSTANT\n - Control Flow: BREAK_WITH_LABEL",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C036A-ELAS-03-ST03-DT03-DF05-CF25-01.xml"
+          },
+          "length": 73340,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "80fafae79e956a06c69e9cf30c50cd1360d14d855a30f887c6e6bec60d412072"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/index/service/InternalIndexService.java"
+          },
+          "length": 28834,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "d52402e3d816a451037171a40955c0e90fee6ed4cd62989cc0bad47c7a20ed55"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "36",
+              "name": "Absolute Path Traversal"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-36",
+          "message": {
+            "text": "Absolute Path Traversal."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/index/service/InternalIndexService.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 533,
+                  "endLine": 537
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "36",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

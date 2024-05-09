@@ -1,0 +1,112 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 155758,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "This test takes in an integer n. It creates n temporary files, and fills them with data. It then attempts to clean up, deleting the last 50 of the temporary files, leaving any files created before those in the temp directory.\nMetadata\n - Base program: Elastic Search\n - Source Taint: SOCKET\n - Data Type: SIMPLE\n - Data Flow: VAR_ARG_LIST\n - Control Flow: SEQUENCE",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C459A-ELAS-06-ST03-DT02-DF12-CF20-01.xml"
+          },
+          "length": 72589,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "1c8734c51caa0d0c6bd78878675cae07165f4e5a88e73d648508e62966660e3b"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/indices/InternalIndicesService.java"
+          },
+          "length": 28088,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "6cbdd6bc48a47c92adb6d9e89772efbfe9bcd8ea88242da2dcc603027f9c2dcc"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "459",
+              "name": "Incomplete Cleanup"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-459",
+          "message": {
+            "text": "Incomplete Cleanup."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/indices/InternalIndicesService.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 665,
+                  "endLine": 670
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "459",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

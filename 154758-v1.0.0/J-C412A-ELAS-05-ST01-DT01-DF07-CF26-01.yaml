@@ -1,0 +1,97 @@
+code_complexity_features:
+- feature: ENVIRONMENT_VARIABLE
+  feature_group: source_taint
+  file_name: /tmp/tmp42QQpa_ss_testcase/src/src/main/java/org/elasticsearch/index/cache/IndexCacheModule.java
+  function_name: configure
+  line_number: '0'
+- feature: array
+  feature_group: data_type
+  file_name: /tmp/tmp42QQpa_ss_testcase/src/src/main/java/org/elasticsearch/index/cache/IndexCacheModule.java
+  function_name: configure
+  line_number: '0'
+- feature: index_alias_1
+  feature_group: data_flow
+  file_name: /tmp/tmp42QQpa_ss_testcase/src/src/main/java/org/elasticsearch/index/cache/IndexCacheModule.java
+  function_name: configure
+  line_number: '0'
+- feature: function_invocation_overload
+  feature_group: control_flow
+  file_name: /tmp/tmp42QQpa_ss_testcase/src/src/main/java/org/elasticsearch/index/cache/IndexCacheModule.java
+  function_name: configure
+  line_number: '0'
+description: 'This test takes a filename that is used as a representation of an externally
+  accessible and unrestricted mutex lock. The weakness will then attempt to grab this
+  lock by checking for the files existence, and creating the file if it doesn''t exist.
+  If the file does exist, the weakness will hang until it is deleted, indefinitely.
+
+  '
+io_pair:
+  benigns:
+  - inputs:
+    - id: source
+      name: MESENTERITIS_OOMETRY
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: file.txt
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - id: source
+      name: MESENTERITIS_OOMETRY
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: new.txt
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - id: source
+      name: MESENTERITIS_OOMETRY
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: program.cfg
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable defining string value.
+
+    '
+  exploits:
+  - inputs:
+    - id: source
+      name: MESENTERITIS_OOMETRY
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: file_exists.txt
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - name: file_exists.txt
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: 'data1 data2 data3 data4 data5 data6 data7 '
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - id: source
+      name: MESENTERITIS_OOMETRY
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: notnew.txt
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - name: notnew.txt
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: 'data1 data2 data3 data4 data5 data6 data7 '
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmp42QQpa_ss_testcase/src/src/main/java/org/elasticsearch/index/cache/IndexCacheModule.java
+  function_name: unwastingEpibatholithic
+  line_number: '0'

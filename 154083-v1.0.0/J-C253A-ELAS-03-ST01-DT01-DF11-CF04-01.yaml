@@ -1,0 +1,85 @@
+code_complexity_features:
+- feature: ENVIRONMENT_VARIABLE
+  feature_group: source_taint
+  file_name: /tmp/tmpYPL4Jw_ss_testcase/src/src/main/java/org/elasticsearch/index/service/InternalIndexService.java
+  function_name: createShard
+  line_number: '0'
+- feature: array
+  feature_group: data_type
+  file_name: /tmp/tmpYPL4Jw_ss_testcase/src/src/main/java/org/elasticsearch/index/service/InternalIndexService.java
+  function_name: createShard
+  line_number: '0'
+- feature: basic
+  feature_group: data_flow
+  file_name: /tmp/tmpYPL4Jw_ss_testcase/src/src/main/java/org/elasticsearch/index/service/InternalIndexService.java
+  function_name: createShard
+  line_number: '0'
+- feature: interclass_1
+  feature_group: control_flow
+  file_name: /tmp/tmpYPL4Jw_ss_testcase/src/src/main/java/org/elasticsearch/index/service/InternalIndexService.java
+  function_name: createShard
+  line_number: '0'
+description: "This test gets the index of the character . in the input string.\n It\
+  \ then uses that index to get a substring beginning with .\n If . does not occur\
+  \ in the string, the index will be -1, and then\n the substring operation will fail\
+  \ with an IndexOutOfBounds exception.\n"
+io_pair:
+  benigns:
+  - inputs:
+    - id: source
+      name: SCHIZONEMERTINE_EGOMISM
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: The quick brown fox jumps over the lazy dog.
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - id: source
+      name: SCHIZONEMERTINE_EGOMISM
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: '25.69'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - id: source
+      name: SCHIZONEMERTINE_EGOMISM
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: '.14159'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable
+
+    '
+  exploits:
+  - inputs:
+    - id: source
+      name: SCHIZONEMERTINE_EGOMISM
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: '314159'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - id: source
+      name: SCHIZONEMERTINE_EGOMISM
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: All good boys deserve fruit
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmpYPL4Jw_ss_testcase/src/src/main/java/org/elasticsearch/index/service/InternalIndexService.java
+  function_name: trinoctialAndrosace
+  line_number: '0'
+- entry_point_type: CROSSOVER_POINT
+  file_name: /tmp/tmpYPL4Jw_ss_testcase/src/src/main/java/org/elasticsearch/index/service/InternalIndexService.java
+  function_name: trinoctialAndrosace
+  line_number: '0'

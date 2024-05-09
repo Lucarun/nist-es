@@ -1,0 +1,90 @@
+code_complexity_features:
+- feature: SOCKET
+  feature_group: source_taint
+  file_name: /tmp/tmp2E_CyK_ss_testcase/src/src/main/java/org/elasticsearch/index/service/InternalIndexService.java
+  function_name: createShard
+  line_number: '0'
+- feature: array
+  feature_group: data_type
+  file_name: /tmp/tmp2E_CyK_ss_testcase/src/src/main/java/org/elasticsearch/index/service/InternalIndexService.java
+  function_name: createShard
+  line_number: '0'
+- feature: var_arg_list
+  feature_group: data_flow
+  file_name: /tmp/tmp2E_CyK_ss_testcase/src/src/main/java/org/elasticsearch/index/service/InternalIndexService.java
+  function_name: createShard
+  line_number: '0'
+- feature: interrupt
+  feature_group: control_flow
+  file_name: /tmp/tmp2E_CyK_ss_testcase/src/src/main/java/org/elasticsearch/index/service/InternalIndexService.java
+  function_name: fratchetyTimed
+  line_number: '0'
+description: "Test will take in a value that is a path to a file under\n the current\
+  \ working directory which will then be displayed.  The input\n is checked for ..\
+  \ characters, then URI-decoded.  This misses\n percent-encoded .. (%2E%2E) characters\
+  \ and allows arbitrary read access.\n"
+io_pair:
+  benigns:
+  - inputs:
+    - address: ss-localhost
+      id: source
+      ordinal: '1'
+      port: '8887'
+      source: socket_input
+      stage: co_process
+      value: ../foo.txt
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - address: ss-localhost
+      id: source
+      ordinal: '1'
+      port: '8887'
+      source: socket_input
+      stage: co_process
+      value: bar.txt
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - address: ss-localhost
+      id: source
+      ordinal: '1'
+      port: '8887'
+      source: socket_input
+      stage: co_process
+      value: foo/../baz.txt
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable defining test value.
+
+    '
+  exploits:
+  - inputs:
+    - address: ss-localhost
+      id: source
+      ordinal: '1'
+      port: '8887'
+      source: socket_input
+      stage: co_process
+      value: '%2E%2E/%2E%2E/%2E%2E/%2E%2E/%2E%2E/%2E%2E/%2E%2E/%2E%2E/%2E%2E/%2E%2E/etc/passwd'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - address: ss-localhost
+      id: source
+      ordinal: '1'
+      port: '8887'
+      source: socket_input
+      stage: co_process
+      value: '%2E%2E/%2E%2E/%2E%2E/%2E%2E/%2E%2E/%2E%2E/%2E%2E/%2E%2E/%2E%2E/%2E%2E/etc/group'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: CROSSOVER_POINT
+  file_name: /tmp/tmp2E_CyK_ss_testcase/src/src/main/java/org/elasticsearch/index/service/InternalIndexService.java
+  function_name: fratchetyTimed
+  line_number: '0'
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmp2E_CyK_ss_testcase/src/src/main/java/org/elasticsearch/index/service/InternalIndexService.java
+  function_name: fratchetyTimed
+  line_number: '0'

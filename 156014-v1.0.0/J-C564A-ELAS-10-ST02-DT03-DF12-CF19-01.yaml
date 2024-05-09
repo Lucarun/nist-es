@@ -1,0 +1,242 @@
+code_complexity_features:
+- feature: FILE_CONTENTS
+  feature_group: source_taint
+  file_name: /tmp/tmpZVMj0U_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: doStart
+  line_number: '0'
+- feature: void_pointer
+  feature_group: data_type
+  file_name: /tmp/tmpZVMj0U_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: doStart
+  line_number: '0'
+- feature: var_arg_list
+  feature_group: data_flow
+  file_name: /tmp/tmpZVMj0U_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: doStart
+  line_number: '0'
+- feature: recursive
+  feature_group: control_flow
+  file_name: /tmp/tmpZVMj0U_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: sternothereRipple
+  line_number: '0'
+description: "Using Hibernate to execute a dynamic SQL statement\n with built-in user-controlled\
+  \ input can allow an attacker to\n modify the statement's meaning or to execute\
+  \ arbitrary SQL commands.\n"
+io_pair:
+  benigns:
+  - inputs:
+    - name: QUATTRINI_BEAMWORK
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/affination_garthman.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/affination_garthman.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: USA
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: mysql
+      ordinal: '3'
+      server: ss-db-mysql
+      source: database_content_input
+      stage: post_process
+      value: DROP DATABASE IF EXISTS $SS_DBMYSQLDATABASE;
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: mysql
+      ordinal: '4'
+      server: ss-db-mysql
+      source: database_content_input
+      stage: pre_process
+      value: northwind
+      value_encoding: none
+      value_type: USE_CONTENTS_OF_FILE
+    - name: SS_DBMYSQLDATABASE
+      ordinal: '5'
+      source: env_var_input
+      stage: pre_process
+      value: SET_DYNAMIC_DB_NAME
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: QUATTRINI_BEAMWORK
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/affination_garthman.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/affination_garthman.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: Germany
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: mysql
+      ordinal: '3'
+      server: ss-db-mysql
+      source: database_content_input
+      stage: post_process
+      value: DROP DATABASE IF EXISTS $SS_DBMYSQLDATABASE;
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: mysql
+      ordinal: '4'
+      server: ss-db-mysql
+      source: database_content_input
+      stage: pre_process
+      value: northwind
+      value_encoding: none
+      value_type: USE_CONTENTS_OF_FILE
+    - name: SS_DBMYSQLDATABASE
+      ordinal: '5'
+      source: env_var_input
+      stage: pre_process
+      value: SET_DYNAMIC_DB_NAME
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: QUATTRINI_BEAMWORK
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/affination_garthman.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/affination_garthman.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: Finland
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: mysql
+      ordinal: '3'
+      server: ss-db-mysql
+      source: database_content_input
+      stage: post_process
+      value: DROP DATABASE IF EXISTS $SS_DBMYSQLDATABASE;
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: mysql
+      ordinal: '4'
+      server: ss-db-mysql
+      source: database_content_input
+      stage: pre_process
+      value: northwind
+      value_encoding: none
+      value_type: USE_CONTENTS_OF_FILE
+    - name: SS_DBMYSQLDATABASE
+      ordinal: '5'
+      source: env_var_input
+      stage: pre_process
+      value: SET_DYNAMIC_DB_NAME
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable defining test value.
+
+    '
+  exploits:
+  - inputs:
+    - name: QUATTRINI_BEAMWORK
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/affination_garthman.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/affination_garthman.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: x' or 'x'='x
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: mysql
+      ordinal: '3'
+      server: ss-db-mysql
+      source: database_content_input
+      stage: post_process
+      value: DROP DATABASE IF EXISTS $SS_DBMYSQLDATABASE;
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: mysql
+      ordinal: '4'
+      server: ss-db-mysql
+      source: database_content_input
+      stage: post_process
+      value: DROP DATABASE IF EXISTS $SS_DBMYSQLDATABASE;
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: mysql
+      ordinal: '5'
+      server: ss-db-mysql
+      source: database_content_input
+      stage: pre_process
+      value: northwind
+      value_encoding: none
+      value_type: USE_CONTENTS_OF_FILE
+    - name: SS_DBMYSQLDATABASE
+      ordinal: '6'
+      source: env_var_input
+      stage: pre_process
+      value: SET_DYNAMIC_DB_NAME
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: QUATTRINI_BEAMWORK
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/affination_garthman.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/affination_garthman.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: x' or city='London
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: mysql
+      ordinal: '3'
+      server: ss-db-mysql
+      source: database_content_input
+      stage: post_process
+      value: DROP DATABASE IF EXISTS $SS_DBMYSQLDATABASE;
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: mysql
+      ordinal: '4'
+      server: ss-db-mysql
+      source: database_content_input
+      stage: pre_process
+      value: northwind
+      value_encoding: none
+      value_type: USE_CONTENTS_OF_FILE
+    - name: SS_DBMYSQLDATABASE
+      ordinal: '5'
+      source: env_var_input
+      stage: pre_process
+      value: SET_DYNAMIC_DB_NAME
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmpZVMj0U_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: fahloreAnthurium
+  line_number: '0'
+- entry_point_type: CROSSOVER_POINT
+  file_name: /tmp/tmpZVMj0U_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java
+  function_name: fahloreAnthurium
+  line_number: '0'

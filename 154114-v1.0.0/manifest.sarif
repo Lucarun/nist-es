@@ -1,0 +1,112 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 154114,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "This test takes a filename and attemps to read and output\n to the screen. If the file does not exist, it swallows the\n FileNotFoundException, and subsequently dies on a NullPointerException.\nMetadata\n - Base program: Elastic Search\n - Source Taint: SOCKET\n - Data Type: VOID_POINTER\n - Data Flow: INDEX_ALIAS_1\n - Control Flow: INDIRECTLY_RECURSIVE",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C390A-ELAS-08-ST03-DT03-DF07-CF02-01.xml"
+          },
+          "length": 72812,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "a598eaf189c8ee5e6af2c02291de814ceb75a96c3aee7b044de1c2bfc31c9849"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java"
+          },
+          "length": 14543,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "7f67ab569c05c41d07dff51962020fb2f1c3511b765c53c7263f3eda94874995"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "390",
+              "name": "Detection of Error Condition Without Action"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-390",
+          "message": {
+            "text": "Detection of Error Condition Without Action."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 83,
+                  "endLine": 84
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "390",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

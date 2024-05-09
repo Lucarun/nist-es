@@ -1,0 +1,1035 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project base_program="J-ELAS" language="JAVA" name="J-C209A-ELAS-10-ST01-DT03-DF06-CF17-01" targeted_architecture="ANY" targeted_os="LINUX" test_case_type="ALL" xmlns="urn:stonesoup:project">
+    <description>This test attempts to insert a new record into a MySQL
+ database.  In the event of a SQLException during execution of the insert
+ command, diagnostic information about the database connection and SQL
+ statement will be dumped to the output stream.
+</description>
+    <additional_information>
+        <keyvalue key="kill_command">TRUE</keyvalue>
+        <keyvalue key="JAVA_MAIN">org.elasticsearch.bootstrap.Elasticsearch</keyvalue>
+        <keyvalue key="JAVA_CLASSPATH">$SS_TC_DEPS/java/elasticsearch/*:$SS_TC_ROOT/$SS_TC_INSTALL/*:$SS_TC_ROOT/$SS_TC_INSTALL/classes/*:$SS_TC_DEPS/java/stonesoup/database/mysql/*:$SS_TC_DEPS/java/stonesoup/lttng/lttng-stonesoup-0.1.jar</keyvalue>
+        <keyvalue key="algorithmic_variant_name">UNSPECIFIED</keyvalue>
+        <keyvalue key="root_cause">UNSPECIFIED</keyvalue>
+    </additional_information>
+    <structure install="install" iodata="testData" scoredata="testOutput" scripts="scripts" source="src"/>
+    <run_command>java $SS_JAVA_OPTS -Djava.library.path=$SS_TC_DEPS/lib64/ -cp &quot;$SS_JAVA_CLASSPATH&quot;</run_command>
+    <weakness generation_method="FAULT_INJECTED">
+        <variant cwe="CWE-209" name="CWE-209-A">
+            <crossover_point file_name="/tmp/tmpMKX04h_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java" line_number="0">
+                <method name="doStart"/>
+            </crossover_point>
+            <trigger_point file_name="/tmp/tmpMKX04h_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java" line_number="0">
+                <method name="doStart"/>
+            </trigger_point>
+        </variant>
+        <features>
+            <taint_source file_name="/tmp/tmpMKX04h_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java" line_number="0" type="ENVIRONMENT_VARIABLE">
+                <method name="doStart"/>
+            </taint_source>
+            <data_type file_name="/tmp/tmpMKX04h_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java" line_number="0" type="VOID_POINTER">
+                <method name="doStart"/>
+            </data_type>
+            <data_flow file_name="/tmp/tmpMKX04h_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java" line_number="0" type="ADDRESS_AS_FUNCTION_RETURN_VALUE">
+                <method name="doStart"/>
+            </data_flow>
+            <control_flow file_name="/tmp/tmpMKX04h_ss_testcase/src/src/main/java/org/elasticsearch/tribe/TribeService.java" line_number="0" type="INTERRUPT_CONTINUE">
+                <method name="doStart"/>
+            </control_flow>
+        </features>
+    </weakness>
+    <build_commands>
+        <command>env ANT_HOME=$SS_TC_DEPS/ant ant $SS_ANT_OPTS -Dstonesoup.database.postgres.required=no -Dstonesoup.hibernate.postgres.required=no -Dstonesoup.hibernate.mysql.required=no -Dstonesoup.database.mysql.required=yes -Dstonesoup.socket.required=no -lib $SS_TC_DEPS/java/stonesoup/lttng/lttng-stonesoup-0.1.jar -Dstonesoup.socket.lib.dir=&quot;$SS_TC_DEPS/java/stonesoup/socket&quot; -Dstonesoup.hibernate.mysql.lib.dir=&quot;$SS_TC_DEPS/java/stonesoup/hibernate/mysql&quot; -Dstonesoup.hibernate.postgres.lib.dir=&quot;$SS_TC_DEPS/java/stonesoup/hibernate/postgres&quot; -Dstonesoup.database.mysql.lib.dir=&quot;$SS_TC_DEPS/java/stonesoup/database/mysql&quot; -Dstonesoup.database.postgres.lib.dir=&quot;$SS_TC_DEPS/java/stonesoup/database/postgres&quot;  -Dmaven.build.dir=$SS_TC_ROOT/$SS_TC_INSTALL -Dmaven.repo.local=&quot;$SS_TC_DEPS/java/elasticsearch&quot; -Dmaven.settings.offline=true -Dstonesoup.lttng.lib.dir=&quot;$SS_TC_DEPS/java/stonesoup/lttng&quot; -Dstonesoup.lttng.dummy.lib.dir=&quot;$SS_TC_DEPS/java/stonesoup/lttng-dummy&quot; package</command>
+    </build_commands>
+    <iopairs>
+        <iopair name="J-C209A-ELAS-10-ST01-DT03-DF06-CF17-01-GOOD-01" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>Add data
+Environment variables defining database connection parameters including username and password.
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env SS_DBMYSQLDATABASE;\nenv SCUTTLING_XEROPHAGIA;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SCUTTLING_XEROPHAGIA" type="USE_TEXT">IBM</environment_variable>
+                </process>
+                <process>
+                    <database database_name="northwind_qdbusvfxjfxkvdgm" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_FILE_CONTENTS">/opt/stonesoup/workspace/scripts/northwind_create_northwind_qdbusvfxjfxkvdgm.sql</database>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_DBMYSQLDATABASE" type="USE_TEXT">northwind_qdbusvfxjfxkvdgm</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">sleep 2 &amp;&amp; printf &quot;Sleeping to allow DB to be created.&quot;</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-01&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-01-CURL" type="USE_TEXT">curl -XPUT 'http://ss-localhost:9200/movies/movie/1' -d '{&quot;title&quot;:&quot;The Godfather&quot;,&quot;director&quot;:&quot;Francis Ford Coppola&quot;,&quot;year&quot;:1972}'</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <database database_name="northwind_qdbusvfxjfxkvdgm" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_TEXT">DROP DATABASE IF EXISTS $SS_DBMYSQLDATABASE;</database>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_RafaixFtV7" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-01-Default">
+                <formula name="GOOD-01-Default">GOOD-01 AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="GOOD-01">
+                    <actual encoding="STRING" input_id_ref="GOOD-01-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-01/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C209A-ELAS-10-ST01-DT03-DF06-CF17-01-GOOD-02" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>simple string query
+Environment variables defining database connection parameters including username and password.
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env SS_DBMYSQLDATABASE;\nenv SCUTTLING_XEROPHAGIA;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SCUTTLING_XEROPHAGIA" type="USE_TEXT">Digital</environment_variable>
+                </process>
+                <process>
+                    <database database_name="northwind_wyfgtpnwisktzpxk" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_FILE_CONTENTS">/opt/stonesoup/workspace/scripts/northwind_create_northwind_wyfgtpnwisktzpxk.sql</database>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_DBMYSQLDATABASE" type="USE_TEXT">northwind_wyfgtpnwisktzpxk</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">sleep 2 &amp;&amp; printf &quot;Sleeping to allow DB to be created.&quot;</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-02&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-02-CURL" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_search' -d '{&quot;query&quot;: {&quot;query_string&quot;: {&quot;query&quot;: &quot;kill&quot;}}}'</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <database database_name="northwind_wyfgtpnwisktzpxk" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_TEXT">DROP DATABASE IF EXISTS $SS_DBMYSQLDATABASE;</database>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_Jo0KO12RJ7" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-02-Default">
+                <formula name="GOOD-02-Default">GOOD-02 AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="GOOD-02">
+                    <actual encoding="STRING" input_id_ref="GOOD-02-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-02/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C209A-ELAS-10-ST01-DT03-DF06-CF17-01-GOOD-03" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>get all data
+Environment variables defining database connection parameters including username and password.
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env SS_DBMYSQLDATABASE;\nenv SCUTTLING_XEROPHAGIA;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SCUTTLING_XEROPHAGIA" type="USE_TEXT">IBM</environment_variable>
+                </process>
+                <process>
+                    <database database_name="northwind_rprpvgkkixurkokq" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_FILE_CONTENTS">/opt/stonesoup/workspace/scripts/northwind_create_northwind_rprpvgkkixurkokq.sql</database>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_DBMYSQLDATABASE" type="USE_TEXT">northwind_rprpvgkkixurkokq</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">sleep 2 &amp;&amp; printf &quot;Sleeping to allow DB to be created.&quot;</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-03&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-03-CURL" type="USE_TEXT">curl -XGET 'http://ss-localhost:9200/_search' -d '{ &quot;query&quot;: { &quot;matchAll&quot; : {} }}'</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <database database_name="northwind_rprpvgkkixurkokq" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_TEXT">DROP DATABASE IF EXISTS $SS_DBMYSQLDATABASE;</database>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_zQWWqAbWBj" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-03-Default">
+                <formula name="GOOD-03-Default">GOOD-03 AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="GOOD-03">
+                    <actual encoding="STRING" input_id_ref="GOOD-03-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-03/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C209A-ELAS-10-ST01-DT03-DF06-CF17-01-GOOD-04" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>add data
+Environment variables defining database connection parameters including username and password.
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env SS_DBMYSQLDATABASE;\nenv SCUTTLING_XEROPHAGIA;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SCUTTLING_XEROPHAGIA" type="USE_TEXT">Digital</environment_variable>
+                </process>
+                <process>
+                    <database database_name="northwind_kvkpgbkeyycjpnpk" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_FILE_CONTENTS">/opt/stonesoup/workspace/scripts/northwind_create_northwind_kvkpgbkeyycjpnpk.sql</database>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_DBMYSQLDATABASE" type="USE_TEXT">northwind_kvkpgbkeyycjpnpk</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">sleep 2 &amp;&amp; printf &quot;Sleeping to allow DB to be created.&quot;</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-04&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-04-CURL" type="USE_TEXT">curl -XPUT 'http://ss-localhost:9200/user/starfleet/40' -d '{ &quot;name&quot; : &quot;Picard&quot;, &quot;rank&quot; : &quot;Captain&quot; }'</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <database database_name="northwind_kvkpgbkeyycjpnpk" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_TEXT">DROP DATABASE IF EXISTS $SS_DBMYSQLDATABASE;</database>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_1niqHOSr8L" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-04-Default">
+                <formula name="GOOD-04-Default">OUTPUT AND (STATE-EXISTS AND STATE-HAS-CONTENT) AND (GLOBAL-EXISTS AND GLOBAL-HAS-CONTENT) AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="OUTPUT">
+                    <actual encoding="STRING" input_id_ref="GOOD-04-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-04/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SCRIPT" encoding="STRING" name="STATE-EXISTS" type="USE_TEXT">
+                    if [[ -a good-04/elasticsearch/nodes/0/indices/user/0/_state/state-2 ]]; then exit 0; else exit 1; fi;
+                </simple_check>
+                <simple_check check_type="SCRIPT" encoding="STRING" name="GLOBAL-EXISTS" type="USE_TEXT">
+                    if [[ -a good-04/elasticsearch/nodes/0/_state/global-4 ]]; then exit 0; else exit 1; fi;
+                </simple_check>
+                <simple_check check_type="SCRIPT" encoding="STRING" name="STATE-HAS-CONTENT" type="USE_TEXT">
+                    if [[ -s good-04/elasticsearch/nodes/0/indices/user/0/_state/state-2 ]]; then exit 0; else exit 1; fi;
+                </simple_check>
+                <simple_check check_type="SCRIPT" encoding="STRING" name="GLOBAL-HAS-CONTENT" type="USE_TEXT">
+                    if [[ -s good-04/elasticsearch/nodes/0/_state/global-4 ]]; then exit 0; else exit 1; fi;
+                </simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C209A-ELAS-10-ST01-DT03-DF06-CF17-01-GOOD-05" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>delete data
+Environment variables defining database connection parameters including username and password.
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env SS_DBMYSQLDATABASE;\nenv SCUTTLING_XEROPHAGIA;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SCUTTLING_XEROPHAGIA" type="USE_TEXT">IBM</environment_variable>
+                </process>
+                <process>
+                    <database database_name="northwind_xlvotwhtetwpukdd" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_FILE_CONTENTS">/opt/stonesoup/workspace/scripts/northwind_create_northwind_xlvotwhtetwpukdd.sql</database>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_DBMYSQLDATABASE" type="USE_TEXT">northwind_xlvotwhtetwpukdd</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">sleep 2 &amp;&amp; printf &quot;Sleeping to allow DB to be created.&quot;</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-05&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-05-CURL" type="USE_TEXT">curl -XDELETE 'http://ss-localhost:9200/movies/movie/1' -d '{ &quot;year&quot;: 1962&quot; }'</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <database database_name="northwind_xlvotwhtetwpukdd" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_TEXT">DROP DATABASE IF EXISTS $SS_DBMYSQLDATABASE;</database>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_qo4ltNb52D" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-05-Default">
+                <formula name="GOOD-05-Default">OUTPUT AND (GLOBAL-EXISTS AND GLOBAL-HAS-CONTENT) AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="OUTPUT">
+                    <actual encoding="STRING" input_id_ref="GOOD-05-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-05/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SCRIPT" encoding="STRING" name="GLOBAL-EXISTS" type="USE_TEXT">
+                    if [[ -a good-05/elasticsearch/nodes/0/_state/global-5 ]]; then exit 0; else exit 1; fi;
+                </simple_check>
+                <simple_check check_type="SCRIPT" encoding="STRING" name="GLOBAL-HAS-CONTENT" type="USE_TEXT">
+                   if [[ -s good-05/elasticsearch/nodes/0/_state/global-5 ]]; then exit 0; else exit 1; fi;
+                </simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C209A-ELAS-10-ST01-DT03-DF06-CF17-01-GOOD-06" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>bulk add data
+Environment variables defining database connection parameters including username and password.
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env SS_DBMYSQLDATABASE;\nenv SCUTTLING_XEROPHAGIA;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SCUTTLING_XEROPHAGIA" type="USE_TEXT">Digital</environment_variable>
+                </process>
+                <process>
+                    <database database_name="northwind_xpdsqtpbhpdosjht" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_FILE_CONTENTS">/opt/stonesoup/workspace/scripts/northwind_create_northwind_xpdsqtpbhpdosjht.sql</database>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_DBMYSQLDATABASE" type="USE_TEXT">northwind_xpdsqtpbhpdosjht</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">sleep 2 &amp;&amp; printf &quot;Sleeping to allow DB to be created.&quot;</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-06&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-06-CURL" type="USE_TEXT">curl -XPUT localhost:9200/_bulk --data-binary @good-06/shakespeare.json</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <database database_name="northwind_xpdsqtpbhpdosjht" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_TEXT">DROP DATABASE IF EXISTS $SS_DBMYSQLDATABASE;</database>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_tUUKIWHQPf" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-06-Default">
+                <formula name="GOOD-06-Default">HEAD AND TAIL AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="HEAD">
+                    <actual encoding="STRING" input_id_ref="GOOD-06-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-06/head.txt</expected>
+                </compare_check>
+                <compare_check check_type="CONTAINS" name="TAIL">
+                    <actual encoding="STRING" input_id_ref="GOOD-06-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-06/tail.txt</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C209A-ELAS-10-ST01-DT03-DF06-CF17-01-GOOD-07" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>filter without search query
+Environment variables defining database connection parameters including username and password.
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env SS_DBMYSQLDATABASE;\nenv SCUTTLING_XEROPHAGIA;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SCUTTLING_XEROPHAGIA" type="USE_TEXT">IBM</environment_variable>
+                </process>
+                <process>
+                    <database database_name="northwind_bqtoybjbxhpbixqu" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_FILE_CONTENTS">/opt/stonesoup/workspace/scripts/northwind_create_northwind_bqtoybjbxhpbixqu.sql</database>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_DBMYSQLDATABASE" type="USE_TEXT">northwind_bqtoybjbxhpbixqu</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">sleep 2 &amp;&amp; printf &quot;Sleeping to allow DB to be created.&quot;</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-07&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-07-CURL" type="USE_TEXT">curl -XPOST &quot;http://localhost:9200/_search&quot; -d '{ &quot;query&quot;: { &quot;filtered&quot;: { &quot;query&quot;: { &quot;match_all&quot;: {} }, &quot;filter&quot;: {&quot;term&quot;: { &quot;year&quot;: 1962 }}}}}'</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <database database_name="northwind_bqtoybjbxhpbixqu" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_TEXT">DROP DATABASE IF EXISTS $SS_DBMYSQLDATABASE;</database>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_N1DehQUqvR" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-07-Default">
+                <formula name="GOOD-07-Default">OUTPUT AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="OUTPUT">
+                    <actual encoding="STRING" input_id_ref="GOOD-07-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-07/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C209A-ELAS-10-ST01-DT03-DF06-CF17-01-GOOD-08" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>tokenize with snowball analyzer
+Environment variables defining database connection parameters including username and password.
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env SS_DBMYSQLDATABASE;\nenv SCUTTLING_XEROPHAGIA;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SCUTTLING_XEROPHAGIA" type="USE_TEXT">Digital</environment_variable>
+                </process>
+                <process>
+                    <database database_name="northwind_bdouoarstdhskrno" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_FILE_CONTENTS">/opt/stonesoup/workspace/scripts/northwind_create_northwind_bdouoarstdhskrno.sql</database>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_DBMYSQLDATABASE" type="USE_TEXT">northwind_bdouoarstdhskrno</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">sleep 2 &amp;&amp; printf &quot;Sleeping to allow DB to be created.&quot;</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-08&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-08-LOAD" type="USE_TEXT">curl -XPUT localhost:9200/_bulk --data-binary @good-06/shakespeare.json</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-08-SEARCH" type="USE_TEXT">curl -XPOST http://ss-localhost:9200/_search?pretty=true -d'{&quot;query&quot;: {&quot;query_string&quot;: {&quot;query&quot;: &quot;WESTMORELAND&quot;}}, &quot;sort&quot;: &quot;_id&quot;}'</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <database database_name="northwind_bdouoarstdhskrno" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_TEXT">DROP DATABASE IF EXISTS $SS_DBMYSQLDATABASE;</database>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_21Vw0fUbGM" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-08-Default">
+                <formula name="GOOD-08-Default">HEAD AND TAIL AND SEARCH AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="HEAD">
+                    <actual encoding="STRING" input_id_ref="GOOD-08-LOAD" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-08/head.txt</expected>
+                </compare_check>
+                <compare_check check_type="CONTAINS" name="TAIL">
+                    <actual encoding="STRING" input_id_ref="GOOD-08-LOAD" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-08/tail.txt</expected>
+                </compare_check>
+                <compare_check check_type="CONTAINS" name="SEARCH">
+                    <actual encoding="STRING" input_id_ref="GOOD-08-SEARCH" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-08/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C209A-ELAS-10-ST01-DT03-DF06-CF17-01-GOOD-09" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>list indicies
+Environment variables defining database connection parameters including username and password.
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env SS_DBMYSQLDATABASE;\nenv SCUTTLING_XEROPHAGIA;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SCUTTLING_XEROPHAGIA" type="USE_TEXT">IBM</environment_variable>
+                </process>
+                <process>
+                    <database database_name="northwind_xpoyubpguaibwyzq" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_FILE_CONTENTS">/opt/stonesoup/workspace/scripts/northwind_create_northwind_xpoyubpguaibwyzq.sql</database>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_DBMYSQLDATABASE" type="USE_TEXT">northwind_xpoyubpguaibwyzq</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">sleep 2 &amp;&amp; printf &quot;Sleeping to allow DB to be created.&quot;</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-09&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-09-CURL" type="USE_TEXT">curl -XGET &quot;http://localhost:9200/_cat/indices&quot;</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <database database_name="northwind_xpoyubpguaibwyzq" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_TEXT">DROP DATABASE IF EXISTS $SS_DBMYSQLDATABASE;</database>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_bu9f22P5QO" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-09-Default">
+                <formula name="GOOD-09-Default">OUTPUT AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="OUTPUT">
+                    <actual encoding="STRING" input_id_ref="GOOD-09-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_TEXT">movies 5 1 6 0 14.7kb 14.7kb</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C209A-ELAS-10-ST01-DT03-DF06-CF17-01-GOOD-10" reset_scheme="NONE" timeout="300" type="GOOD">
+            <description>drilling down
+Environment variables defining database connection parameters including username and password.
+</description>
+            <technical_impact>NONE</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env SS_DBMYSQLDATABASE;\nenv SCUTTLING_XEROPHAGIA;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SCUTTLING_XEROPHAGIA" type="USE_TEXT">Digital</environment_variable>
+                </process>
+                <process>
+                    <database database_name="northwind_wbzyphvrcstnvdaa" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_FILE_CONTENTS">/opt/stonesoup/workspace/scripts/northwind_create_northwind_wbzyphvrcstnvdaa.sql</database>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_DBMYSQLDATABASE" type="USE_TEXT">northwind_wbzyphvrcstnvdaa</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">sleep 2 &amp;&amp; printf &quot;Sleeping to allow DB to be created.&quot;</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-10&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process_group scheme="PARALLEL">
+                    <process_group scheme="SEQUENCE">
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                        </process>
+                        <process delay_after="0" delay_before="0">
+                            <script background="false" encoding="STRING" input_id="GOOD-10-CURL" type="USE_TEXT">curl -XPOST http://ss-localhost:9200/products/_search?pretty=true { &quot;query&quot;: { &quot;filtered&quot;: { &quot;query&quot;: { &quot;match&quot;: {&quot;_all&quot;: &quot;network routing&quot;}}, &quot;filter&quot;: { &quot;and&quot;: [ {&quot;range&quot;: {&quot;price&quot;: {&quot;gte&quot;: 0, &quot;lte&quot;: 5000}}} ]} }}, &quot;facets&quot;:{ &quot;department_id&quot;: {&quot;terms&quot;: {&quot;field&quot;: &quot;department_id&quot;}}, &quot;department_name&quot;: {&quot;terms&quot;: {&quot;field&quot;: &quot;department_name&quot;}}, &quot;price&quot;: {&quot;histogram&quot;: {&quot;field&quot;: &quot;price&quot;, &quot;interval&quot;: 5000}}} }</script>
+                        </process>
+                    </process_group>
+                    <process_group scheme="SEQUENCE"/>
+                </process_group>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <database database_name="northwind_wbzyphvrcstnvdaa" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_TEXT">DROP DATABASE IF EXISTS $SS_DBMYSQLDATABASE;</database>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_dJUtJF0NiN" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="GOOD-10-Default">
+                <formula name="GOOD-10-Default">OUTPUT AND NOT TIMEOUT AND NOT CONTROLLED_EXIT</formula>
+            </scoring_formula>
+            <output_checks>
+                <compare_check check_type="CONTAINS" name="OUTPUT">
+                    <actual encoding="STRING" input_id_ref="GOOD-10-CURL" output_type="STANDARD_OUT"></actual>
+                    <expected encoding="STRING" type="USE_FILE_CONTENTS">good-10/output.txt</expected>
+                </compare_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="TIMEOUT" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="CONTROLLED_EXIT" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C209A-ELAS-10-ST01-DT03-DF06-CF17-01-BAD-01" reset_scheme="NONE" timeout="300" type="BAD">
+            <description>Environment variables defining database connection parameters including username and password.
+</description>
+            <technical_impact>READ_APPLICATION_DATA</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env SS_DBMYSQLDATABASE;\nenv SCUTTLING_XEROPHAGIA;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SCUTTLING_XEROPHAGIA" type="USE_TEXT">DigitalPhotographicalTecnologicalSprectrumAnalysis</environment_variable>
+                </process>
+                <process>
+                    <database database_name="northwind_xljxyfcelgahynnt" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_FILE_CONTENTS">/opt/stonesoup/workspace/scripts/northwind_create_northwind_xljxyfcelgahynnt.sql</database>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_DBMYSQLDATABASE" type="USE_TEXT">northwind_xljxyfcelgahynnt</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">sleep 2 &amp;&amp; printf &quot;Sleeping to allow DB to be created.&quot;</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-04&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                </process>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                </process>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" input_id="GOOD-04-CURLPYZS9yrEDZ" type="USE_TEXT">curl -XPUT 'http://ss-localhost:9200/user/starfleet/40' -d '{ &quot;name&quot; : &quot;Picard&quot;, &quot;rank&quot; : &quot;Captain&quot; }'</script>
+                </process>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <database database_name="northwind_xljxyfcelgahynnt" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_TEXT">DROP DATABASE IF EXISTS $SS_DBMYSQLDATABASE;</database>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_qt3ja1ehZaSmT8nX07Db" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="db_connection_formula_X9dLzczulo">
+                <formula name="db_connection_formula_X9dLzczulo">weakness_started_7d5ONSIb8ajexynrXYXk AND ((NOT PERFORMER AND (db_connection_pass_mVRya9f42M OR db_connection_string_0IlBfSN8cO) AND NOT timeout_CXm72Cxm7G) or (PERFORMER AND NOT ((db_connection_pass_mVRya9f42M OR db_connection_string_0IlBfSN8cO) OR timeout_CXm72Cxm7G OR controlled_exit_ssHW975TfI)))</formula>
+                <formula name="no_weakness_started_formula_ByyXhtaHtD">(NOT PERFORMER AND (db_connection_pass_mVRya9f42M OR db_connection_string_0IlBfSN8cO) AND NOT timeout_CXm72Cxm7G) or (PERFORMER AND NOT ((db_connection_pass_mVRya9f42M OR db_connection_string_0IlBfSN8cO) OR timeout_CXm72Cxm7G OR controlled_exit_ssHW975TfI))</formula>
+            </scoring_formula>
+            <output_checks>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="timeout_CXm72Cxm7G" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="controlled_exit_ssHW975TfI" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="continued_execution_ZuuneQQX9R" type="USE_TEXT">CONTINUED_EXECUTION</simple_check>
+                <simple_check check_type="SCRIPT" encoding="STRING" name="db_connection_pass_mVRya9f42M" type="USE_TEXT">grep &quot;Pass: $DBMYSQLPASSWORD&quot; logfile.txt</simple_check>
+                <simple_check check_type="SCRIPT" encoding="STRING" name="db_connection_string_0IlBfSN8cO" type="USE_TEXT">grep &quot;JDBC: jdbc:mysql://$DBMYSQLHOST:$DBMYSQLPORT&quot; logfile.txt</simple_check>
+                <compare_check check_type="CONTAINS" name="weakness_started_7d5ONSIb8ajexynrXYXk">
+                    <actual encoding="STRING" input_id_ref="lttng_output_qt3ja1ehZaSmT8nX07Db" output_type="STANDARD_OUT">None</actual>
+                    <expected encoding="STRING" type="USE_TEXT">stonesoup_trace:weakness_start</expected>
+                </compare_check>
+            </output_checks>
+        </iopair>
+        <iopair name="J-C209A-ELAS-10-ST01-DT03-DF06-CF17-01-BAD-02" reset_scheme="NONE" timeout="300" type="BAD">
+            <description>Environment variables defining database connection parameters including username and password.
+</description>
+            <technical_impact>READ_APPLICATION_DATA</technical_impact>
+            <pre_processes scheme="SEQUENCE">
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">printf 'env SS_DBMYSQLDATABASE;\nenv SCUTTLING_XEROPHAGIA;\n' | tee nginx_conf_env.txt</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SCUTTLING_XEROPHAGIA" type="USE_TEXT">AutomatedTellerMachineServicingPartsAndRepairCenter</environment_variable>
+                </process>
+                <process>
+                    <database database_name="northwind_kiepbrlapbyxudrz" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_FILE_CONTENTS">/opt/stonesoup/workspace/scripts/northwind_create_northwind_kiepbrlapbyxudrz.sql</database>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_DBMYSQLDATABASE" type="USE_TEXT">northwind_kiepbrlapbyxudrz</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir $SS_TC_ROOT/logs/execute/lttng</script>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="LTTNG_HOME" type="USE_TEXT">$SS_TC_ROOT/logs/execute/lttng</environment_variable>
+                </process>
+                <process>
+                    <environment_variable encoding="STRING" key="SS_RUN_COMMAND_LD_PRELOAD" type="USE_TEXT">$SS_TC_DEPS/lib64/liblttng-stonesoup-java.so:$SS_TC_DEPS/lib64/liblttng-ust-fork.so</environment_variable>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">mkdir -p $SS_TC_DEPS/var/run/lttng</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_DEPS/bin/lttng create &amp;&amp; $SS_TC_DEPS/bin/lttng enable-event -u -a &amp;&amp; $SS_TC_DEPS/bin/lttng start</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">rm -rf $SS_TC_ROOT/lockDir</script>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" type="USE_TEXT">sleep 2 &amp;&amp; printf &quot;Sleeping to allow DB to be created.&quot;</script>
+                </process>
+            </pre_processes>
+            <run_command encoding="STRING" preprend_runcommand="true" type="USE_TEXT">-Des.path.data=&quot;$SS_TC_ROOT/testData/good-07&quot; org.elasticsearch.bootstrap.Elasticsearch</run_command>
+            <co_processes scheme="SEQUENCE">
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/service_mon.sh ss-localhost 9200</script>
+                </process>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">$SS_TC_ROOT/scripts/es_initialized.sh ss-localhost 9200</script>
+                </process>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" input_id="GOOD-07-CURL7tcB8jbXSW" type="USE_TEXT">curl -XPOST &quot;http://localhost:9200/_search&quot; -d '{ &quot;query&quot;: { &quot;filtered&quot;: { &quot;query&quot;: { &quot;match_all&quot;: {} }, &quot;filter&quot;: {&quot;term&quot;: { &quot;year&quot;: 1962 }}}}}'</script>
+                </process>
+                <process delay_after="0" delay_before="0">
+                    <script background="false" encoding="STRING" type="USE_TEXT">curl -XPOST 'http://ss-localhost:9200/_shutdown'</script>
+                </process>
+            </co_processes>
+            <post_processes scheme="SEQUENCE">
+                <process>
+                    <database database_name="northwind_kiepbrlapbyxudrz" database_type="MYSQL" encoding="STRING" server="ss-db-mysql" type="USE_TEXT">DROP DATABASE IF EXISTS $SS_DBMYSQLDATABASE;</database>
+                </process>
+                <process>
+                    <script background="false" encoding="STRING" input_id="lttng_output_wPi12HOQDTzfyN7jLmO0" type="USE_TEXT">$SS_TC_DEPS/bin/lttng stop &amp;&amp; $SS_TC_DEPS/bin/lttng view &amp;&amp; $SS_TC_DEPS/bin/lttng destroy</script>
+                </process>
+            </post_processes>
+            <scoring_formula default="db_connection_formula_7Lv27XOzgr">
+                <formula name="db_connection_formula_7Lv27XOzgr">weakness_started_JLLQbwoB6RHxvW04qgGw AND ((NOT PERFORMER AND (db_connection_pass_WVH6S8aAwR OR db_connection_string_2GGwV2fGDk) AND NOT timeout_Bbe7tNqsYM) or (PERFORMER AND NOT ((db_connection_pass_WVH6S8aAwR OR db_connection_string_2GGwV2fGDk) OR timeout_Bbe7tNqsYM OR controlled_exit_Wv6ju32R2s)))</formula>
+                <formula name="no_weakness_started_formula_66bVR3CfkO">(NOT PERFORMER AND (db_connection_pass_WVH6S8aAwR OR db_connection_string_2GGwV2fGDk) AND NOT timeout_Bbe7tNqsYM) or (PERFORMER AND NOT ((db_connection_pass_WVH6S8aAwR OR db_connection_string_2GGwV2fGDk) OR timeout_Bbe7tNqsYM OR controlled_exit_Wv6ju32R2s))</formula>
+            </scoring_formula>
+            <output_checks>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="timeout_Bbe7tNqsYM" type="USE_TEXT">DOES_NOT_RETURN</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="controlled_exit_Wv6ju32R2s" type="USE_TEXT">CONTROLLED_EXIT</simple_check>
+                <simple_check check_type="SPECIAL" encoding="STRING" name="continued_execution_DPg1tuOwOc" type="USE_TEXT">CONTINUED_EXECUTION</simple_check>
+                <simple_check check_type="SCRIPT" encoding="STRING" name="db_connection_pass_WVH6S8aAwR" type="USE_TEXT">grep &quot;Pass: $DBMYSQLPASSWORD&quot; logfile.txt</simple_check>
+                <simple_check check_type="SCRIPT" encoding="STRING" name="db_connection_string_2GGwV2fGDk" type="USE_TEXT">grep &quot;JDBC: jdbc:mysql://$DBMYSQLHOST:$DBMYSQLPORT&quot; logfile.txt</simple_check>
+                <compare_check check_type="CONTAINS" name="weakness_started_JLLQbwoB6RHxvW04qgGw">
+                    <actual encoding="STRING" input_id_ref="lttng_output_wPi12HOQDTzfyN7jLmO0" output_type="STANDARD_OUT">None</actual>
+                    <expected encoding="STRING" type="USE_TEXT">stonesoup_trace:weakness_start</expected>
+                </compare_check>
+            </output_checks>
+        </iopair>
+    </iopairs>
+</project>

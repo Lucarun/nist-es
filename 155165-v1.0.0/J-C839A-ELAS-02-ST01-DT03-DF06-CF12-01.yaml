@@ -1,0 +1,74 @@
+code_complexity_features:
+- feature: ENVIRONMENT_VARIABLE
+  feature_group: source_taint
+  file_name: /tmp/tmpJrJBmo_ss_testcase/src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java
+  function_name: CustomConcurrentMergeScheduler
+  line_number: '0'
+- feature: void_pointer
+  feature_group: data_type
+  file_name: /tmp/tmpJrJBmo_ss_testcase/src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java
+  function_name: CustomConcurrentMergeScheduler
+  line_number: '0'
+- feature: address_as_function_return_value
+  feature_group: data_flow
+  file_name: /tmp/tmpJrJBmo_ss_testcase/src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java
+  function_name: CustomConcurrentMergeScheduler
+  line_number: '0'
+- feature: interprocedural_1
+  feature_group: control_flow
+  file_name: /tmp/tmpJrJBmo_ss_testcase/src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java
+  function_name: CustomConcurrentMergeScheduler
+  line_number: '0'
+description: "This test takes in a value from an argument and uses it\n as a array\
+  \ accessor resulting in an ArrayIndexOutOfBounds exception.\n"
+io_pair:
+  benigns:
+  - inputs:
+    - id: source
+      name: CARACOLITE_PEUL
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: '2'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - id: source
+      name: CARACOLITE_PEUL
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: '8'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable defining test value.
+
+    '
+  exploits:
+  - inputs:
+    - id: source
+      name: CARACOLITE_PEUL
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: '-1'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - id: source
+      name: CARACOLITE_PEUL
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: '-10'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: CROSSOVER_POINT
+  file_name: /tmp/tmpJrJBmo_ss_testcase/src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java
+  function_name: gerbillusWading
+  line_number: '0'
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmpJrJBmo_ss_testcase/src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java
+  function_name: gerbillusWading
+  line_number: '0'

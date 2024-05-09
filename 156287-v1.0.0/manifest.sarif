@@ -1,0 +1,111 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 156287,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "Using Hibernate to execute a dynamic SQL statement with built-in user-controlled input can allow an attacker to modify the statement's meaning or to execute arbitrary SQL commands.\n\nMetadata\n-Base program: Elastic Search\n- Source Taint: FILE_CONTENTS\n- Data Type: void_pointer\n- Data Flow: index_alias_1\n- Control Flow: interprocedural_1",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C564B-ELAS-08-ST02-DT03-DF07-CF12-01.xml"
+          },
+          "length": 82980,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "0d8142d94e5987cc9ee50a70f7ac96e25513005c225bf7cdff40dd9314235208"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java"
+          },
+          "length": 12508,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "e66e158a298e6da20364a0e7d9d4e98253f35d7748781cd7b8affe161a05bcf6"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "564",
+              "name": "SQL Injection: Hibernate"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-564",
+          "message": {
+            "text": "SQL Injection: Hibernate."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 180
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "564",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

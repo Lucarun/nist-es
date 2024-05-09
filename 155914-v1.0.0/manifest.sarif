@@ -1,0 +1,112 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 155914,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "This test takes a number and attempts to determine whether it is prime by dividing it by each number less than it. For large enough prime integers, this calculation takes an excessive amount of time.\nMetadata\n - Base program: Elastic Search\n - Source Taint: ENVIRONMENT_VARIABLE\n - Data Type: SIMPLE\n - Data Flow: JAVA_GENERICS\n - Control Flow: INTERPROCEDURAL_10",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C834A-ELAS-02-ST01-DT02-DF18-CF14-01.xml"
+          },
+          "length": 66953,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "f92a42d5572e976fe04a829b79dbd6913044f110aa20b9d889fc18e5f9840d03"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java"
+          },
+          "length": 10887,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "17f3093258d8119b7779bb0e6b253c3cea687f5987c07aa101a86ed758981d6d"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "834",
+              "name": "Excessive Iteration"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-834",
+          "message": {
+            "text": "Excessive Iteration."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/index/merge/scheduler/ConcurrentMergeSchedulerProvider.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 265,
+                  "endLine": 275
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "834",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

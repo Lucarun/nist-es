@@ -1,0 +1,112 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 156564,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "The system or application is vulnerable to file system contents\n disclosure through path equivalence. Path equivalence involves the\n use of special characters in file and directory names. The associated\n manipulations are intended to generate multiple names for the same\n object. This test will accept input of a file to read, but prohibits access\n to file in the /etc directory. The input generates an equivalent name\n /////etc/////passwd which bypasses the filter.\nMetadata\n - Base program: Elastic Search\n - Source Taint: SOCKET\n - Data Type: ARRAY\n - Data Flow: VAR_ARG_LIST\n - Control Flow: SEQUENCE",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C041A-ELAS-09-ST03-DT01-DF12-CF20-01.xml"
+          },
+          "length": 73318,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "ad66fd79b2a9390abb7d370471053cc5f034fa46c766d08c39f07e2db7cd8d4b"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/index/cache/id/ShardIdCacheModule.java"
+          },
+          "length": 11762,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "65ab0b00b1c60f5cfe2eb1f46d34284454e54f1620520cf04bb129208b93cd9a"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "41",
+              "name": "Improper Resolution of Path Equivalence"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-41",
+          "message": {
+            "text": "Improper Resolution of Path Equivalence."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/index/cache/id/ShardIdCacheModule.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 246,
+                  "endLine": 254
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "41",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

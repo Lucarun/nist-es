@@ -1,0 +1,112 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 154097,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "This test attempts to insert a new record into a MySQL\n database. In the event of a SQLException during execution of the insert\n command, diagnostic information about the database connection and SQL\n statement will be dumped to the output stream.\nMetadata\n - Base program: Elastic Search\n - Source Taint: FILE_CONTENTS\n - Data Type: ARRAY\n - Data Flow: ADDRESS_AS_FUNCTION_RETURN_VALUE\n - Control Flow: INTERPROCEDURAL_2",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C209A-ELAS-10-ST02-DT01-DF06-CF13-01.xml"
+          },
+          "length": 82506,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "b77c5f18fed3739d79aaa9d4e12293bc8e1e018a219b6cb579e8d8e7d221d338"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/tribe/TribeService.java"
+          },
+          "length": 24152,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "a442c3f18076f776354851f1501f0ad66c7353cda6cfcbf1f525eb5ef8d31372"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "209",
+              "name": "Generation of Error Message Containing Sensitive Information"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-209",
+          "message": {
+            "text": "Generation of Error Message Containing Sensitive Information."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/tribe/TribeService.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 455,
+                  "endLine": 461
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "209",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

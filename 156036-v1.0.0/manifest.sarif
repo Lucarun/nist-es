@@ -1,0 +1,111 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 156036,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": " This test takes in data from an argument, that is intended to contain parameters for an 'ls' command. The test does not perform checks for special characters, however, and it is possible to include other, unexpected commands as part of the ls parameter set.\n\nMetadata\n-Base program: Elastic Search\n- Source Taint: SOCKET\n- Data Type: void_pointer\n- Data Flow: var_arg_list\n- Control Flow: interclass_1",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C078A-ELAS-05-ST03-DT03-DF12-CF04-01.xml"
+          },
+          "length": 72582,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "d5ae9b4d7c55f49b0c34caf673c018f85ab4cc0180235e481029e3f5315aec23"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/index/cache/IndexCacheModule.java"
+          },
+          "length": 13017,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "ae07c397353e1e2a02cd4ca9d4770c94e93e8d3cd75f6dd00137c51574e0b4cf"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "78",
+              "name": "Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-78",
+          "message": {
+            "text": "Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/index/cache/IndexCacheModule.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 248
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "78",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

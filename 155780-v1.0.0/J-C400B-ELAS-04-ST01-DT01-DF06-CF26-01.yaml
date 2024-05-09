@@ -1,0 +1,87 @@
+code_complexity_features:
+- feature: ENVIRONMENT_VARIABLE
+  feature_group: source_taint
+  file_name: /tmp/tmpiojlSR_ss_testcase/src/src/main/java/org/elasticsearch/http/netty/NettyHttpChannel.java
+  function_name: NettyHttpChannel
+  line_number: '0'
+- feature: array
+  feature_group: data_type
+  file_name: /tmp/tmpiojlSR_ss_testcase/src/src/main/java/org/elasticsearch/http/netty/NettyHttpChannel.java
+  function_name: NettyHttpChannel
+  line_number: '0'
+- feature: address_as_function_return_value
+  feature_group: data_flow
+  file_name: /tmp/tmpiojlSR_ss_testcase/src/src/main/java/org/elasticsearch/http/netty/NettyHttpChannel.java
+  function_name: NettyHttpChannel
+  line_number: '0'
+- feature: function_invocation_overload
+  feature_group: control_flow
+  file_name: /tmp/tmpiojlSR_ss_testcase/src/src/main/java/org/elasticsearch/http/netty/NettyHttpChannel.java
+  function_name: NettyHttpChannel
+  line_number: '0'
+description: 'This test takes a number as input and calculates it''s factorial in
+  20 concurrent threads, without setting a limit on how large that number can be (as
+  long as it''s within Integer.MAX_VALUE). This can cause significant resource use
+  when the input is large.
+
+  '
+io_pair:
+  benigns:
+  - inputs:
+    - id: source
+      name: OREODONTINE_MAITHILI
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: '10'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - id: source
+      name: OREODONTINE_MAITHILI
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: '42'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - id: source
+      name: OREODONTINE_MAITHILI
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: '37'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable defining size value.
+
+    '
+  exploits:
+  - inputs:
+    - id: source
+      name: OREODONTINE_MAITHILI
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: '200000'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - id: source
+      name: OREODONTINE_MAITHILI
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: '100000'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmpiojlSR_ss_testcase/src/src/main/java/org/elasticsearch/http/netty/NettyHttpChannel.java
+  function_name: nonjuryingCoagulin
+  line_number: '0'
+- entry_point_type: CROSSOVER_POINT
+  file_name: /tmp/tmpiojlSR_ss_testcase/src/src/main/java/org/elasticsearch/http/netty/NettyHttpChannel.java
+  function_name: nonjuryingCoagulin
+  line_number: '0'

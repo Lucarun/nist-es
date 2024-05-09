@@ -1,0 +1,199 @@
+code_complexity_features:
+- feature: ENVIRONMENT_VARIABLE
+  feature_group: source_taint
+  file_name: /tmp/tmpSwP52k_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+- feature: void_pointer
+  feature_group: data_type
+  file_name: /tmp/tmpSwP52k_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+- feature: basic
+  feature_group: data_flow
+  file_name: /tmp/tmpSwP52k_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+- feature: interprocedural_2
+  feature_group: control_flow
+  file_name: /tmp/tmpSwP52k_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: handleRequest
+  line_number: '0'
+description: "Using Hibernate to execute a dynamic SQL statement with\n built-in user-controlled\
+  \ input can allow an attacker to modify the\n statement's meaning or to execute\
+  \ arbitrary SQL commands.\n"
+io_pair:
+  benigns:
+  - inputs:
+    - id: source
+      name: PSEUDOPOPULAR_ERECTLY
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: USA
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: postgresql
+      ordinal: '2'
+      server: ss-db-postgres
+      source: database_content_input
+      stage: post_process
+      value: DROP DATABASE IF EXISTS $SS_DBPGDATABASE;
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: postgresql
+      ordinal: '3'
+      server: ss-db-postgres
+      source: database_content_input
+      stage: pre_process
+      value: northwind_lowercase
+      value_encoding: none
+      value_type: USE_CONTENTS_OF_FILE
+    - name: SS_DBPGDATABASE
+      ordinal: '4'
+      source: env_var_input
+      stage: pre_process
+      value: SET_DYNAMIC_DB_NAME
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - id: source
+      name: PSEUDOPOPULAR_ERECTLY
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: Germany
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: postgresql
+      ordinal: '2'
+      server: ss-db-postgres
+      source: database_content_input
+      stage: post_process
+      value: DROP DATABASE IF EXISTS $SS_DBPGDATABASE;
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: postgresql
+      ordinal: '3'
+      server: ss-db-postgres
+      source: database_content_input
+      stage: pre_process
+      value: northwind_lowercase
+      value_encoding: none
+      value_type: USE_CONTENTS_OF_FILE
+    - name: SS_DBPGDATABASE
+      ordinal: '4'
+      source: env_var_input
+      stage: pre_process
+      value: SET_DYNAMIC_DB_NAME
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - id: source
+      name: PSEUDOPOPULAR_ERECTLY
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: Finland
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: postgresql
+      ordinal: '2'
+      server: ss-db-postgres
+      source: database_content_input
+      stage: post_process
+      value: DROP DATABASE IF EXISTS $SS_DBPGDATABASE;
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: postgresql
+      ordinal: '3'
+      server: ss-db-postgres
+      source: database_content_input
+      stage: pre_process
+      value: northwind_lowercase
+      value_encoding: none
+      value_type: USE_CONTENTS_OF_FILE
+    - name: SS_DBPGDATABASE
+      ordinal: '4'
+      source: env_var_input
+      stage: pre_process
+      value: SET_DYNAMIC_DB_NAME
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable defining test value.
+
+    '
+  exploits:
+  - inputs:
+    - id: source
+      name: PSEUDOPOPULAR_ERECTLY
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: x' or 'x'='x
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: postgresql
+      ordinal: '2'
+      server: ss-db-postgres
+      source: database_content_input
+      stage: post_process
+      value: DROP DATABASE IF EXISTS $SS_DBPGDATABASE;
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: postgresql
+      ordinal: '3'
+      server: ss-db-postgres
+      source: database_content_input
+      stage: pre_process
+      value: northwind_lowercase
+      value_encoding: none
+      value_type: USE_CONTENTS_OF_FILE
+    - name: SS_DBPGDATABASE
+      ordinal: '4'
+      source: env_var_input
+      stage: pre_process
+      value: SET_DYNAMIC_DB_NAME
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - id: source
+      name: PSEUDOPOPULAR_ERECTLY
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: x' or city='London
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: postgresql
+      ordinal: '2'
+      server: ss-db-postgres
+      source: database_content_input
+      stage: post_process
+      value: DROP DATABASE IF EXISTS $SS_DBPGDATABASE;
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - database: postgresql
+      ordinal: '3'
+      server: ss-db-postgres
+      source: database_content_input
+      stage: pre_process
+      value: northwind_lowercase
+      value_encoding: none
+      value_type: USE_CONTENTS_OF_FILE
+    - name: SS_DBPGDATABASE
+      ordinal: '4'
+      source: env_var_input
+      stage: pre_process
+      value: SET_DYNAMIC_DB_NAME
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: CROSSOVER_POINT
+  file_name: /tmp/tmpSwP52k_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: interrelationParcook
+  line_number: '0'
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmpSwP52k_ss_testcase/src/src/main/java/org/elasticsearch/rest/action/admin/indices/settings/RestUpdateSettingsAction.java
+  function_name: interrelationParcook
+  line_number: '0'

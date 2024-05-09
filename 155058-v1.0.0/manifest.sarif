@@ -1,0 +1,112 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "properties": {
+        "id": 155058,
+        "version": "1.0.0",
+        "type": "source code",
+        "status": "candidate",
+        "submissionDate": "2015-10-06",
+        "language": "java",
+        "author": "IARPA STONESOUP Test and Evaluation team",
+        "description": "This test takes in a value from a taint source,\n and creates a string array based on the value. Math is performed\n on the value such that, if the value is 32749 or greater, the\n resultant value underflows and becomes positive. This results\n in an infinite loop.\nMetadata\n - Base program: Elastic Search\n - Source Taint: ENVIRONMENT_VARIABLE\n - Data Type: SIMPLE\n - Data Flow: ADDRESS_AS_CONSTANT\n - Control Flow: INTERUPT_CONTINUE",
+        "state": "bad",
+        "application": "cpe:2.3:a:elastic:elasticsearch:1.0.0:-:*:*:*:*:*:*",
+        "dependencies": [
+          "stonesoup-vm-v3.0",
+          "elasticsearch-v1.0.0"
+        ]
+      },
+      "tool": {
+        "driver": {
+          "name": "SARD - SAMATE",
+          "fullName": "Software Assurance Reference Dataset Project",
+          "informationUri": "https://samate.nist.gov/SARD/",
+          "version": "5.0.0",
+          "organization": "NIST",
+          "supportedTaxonomies": [
+            {
+              "name": "CWE",
+              "index": 0
+            }
+          ]
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "J-C191A-ELAS-09-ST01-DT02-DF05-CF17-01.xml"
+          },
+          "length": 68546,
+          "sourceLanguage": "xml",
+          "hashes": {
+            "sha-256": "9dac352748c740964ac051c493fb2e9b00863e29b0bb09a8f37b1732963f66b5"
+          }
+        },
+        {
+          "location": {
+            "uri": "src/src/main/java/org/elasticsearch/index/cache/id/ShardIdCacheModule.java"
+          },
+          "length": 6579,
+          "sourceLanguage": "java",
+          "hashes": {
+            "sha-256": "7ff4a41fd89298e768b5f77a056847b854f7533830a0d665379eec599921c16d"
+          }
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "CWE",
+          "version": "4.6",
+          "informationUri": "https://cwe.mitre.org/data/published/cwe_v4.6.pdf",
+          "downloadUri": "https://cwe.mitre.org/data/xml/cwec_v4.6.xml.zip",
+          "organization": "MITRE",
+          "shortDescription": {
+            "text": "The MITRE Common Weakness Enumeration"
+          },
+          "isComprehensive": false,
+          "taxa": [
+            {
+              "id": "191",
+              "name": "Integer Underflow (Wrap or Wraparound)"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "CWE-191",
+          "message": {
+            "text": "Integer Underflow (Wrap or Wraparound)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/src/main/java/org/elasticsearch/index/cache/id/ShardIdCacheModule.java",
+                  "index": 1
+                },
+                "region": {
+                  "startLine": 125,
+                  "endLine": 149
+                }
+              }
+            }
+          ],
+          "taxa": [
+            {
+              "toolComponent": {
+                "name": "CWE",
+                "index": 0
+              },
+              "id": "191",
+              "index": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

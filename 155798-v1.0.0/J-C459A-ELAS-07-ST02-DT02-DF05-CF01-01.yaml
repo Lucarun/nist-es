@@ -1,0 +1,121 @@
+code_complexity_features:
+- feature: FILE_CONTENTS
+  feature_group: source_taint
+  file_name: /tmp/tmpUhOmv3_ss_testcase/src/src/main/java/org/elasticsearch/index/store/distributor/AbstractDistributor.java
+  function_name: primary
+  line_number: '0'
+- feature: simple
+  feature_group: data_type
+  file_name: /tmp/tmpUhOmv3_ss_testcase/src/src/main/java/org/elasticsearch/index/store/distributor/AbstractDistributor.java
+  function_name: primary
+  line_number: '0'
+- feature: address_as_constant
+  feature_group: data_flow
+  file_name: /tmp/tmpUhOmv3_ss_testcase/src/src/main/java/org/elasticsearch/index/store/distributor/AbstractDistributor.java
+  function_name: primary
+  line_number: '0'
+- feature: callback
+  feature_group: control_flow
+  file_name: /tmp/tmpUhOmv3_ss_testcase/src/src/main/java/org/elasticsearch/index/store/distributor/AbstractDistributor.java
+  function_name: primary
+  line_number: '0'
+description: 'This test takes in an integer n.  It creates n temporary files, and
+  fills them with data.  It then attempts to clean up, deleting the last 50 of the
+  temporary files, leaving any files created before those in the temp directory.
+
+  '
+io_pair:
+  benigns:
+  - inputs:
+    - name: BITTIUM_RALLY
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/sheeplet_unmuzzle.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/sheeplet_unmuzzle.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '10'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: BITTIUM_RALLY
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/sheeplet_unmuzzle.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/sheeplet_unmuzzle.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '42'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: BITTIUM_RALLY
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/sheeplet_unmuzzle.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/sheeplet_unmuzzle.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '37'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  description: 'Environment variable defining size value.
+
+    '
+  exploits:
+  - inputs:
+    - name: BITTIUM_RALLY
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/sheeplet_unmuzzle.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/sheeplet_unmuzzle.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '20000'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+  - inputs:
+    - name: BITTIUM_RALLY
+      ordinal: '1'
+      source: env_var_input
+      stage: pre_process
+      value: $SS_TC_ROOT/testData/sheeplet_unmuzzle.bin
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+    - id: source
+      name: $SS_TC_ROOT/testData/sheeplet_unmuzzle.bin
+      ordinal: '2'
+      source: file_content_input
+      stage: pre_process
+      value: '6000'
+      value_encoding: none
+      value_type: USE_TEXT_DIRECTLY
+weakness_points:
+- entry_point_type: TRIGGER_POINT
+  file_name: /tmp/tmpUhOmv3_ss_testcase/src/src/main/java/org/elasticsearch/index/store/distributor/AbstractDistributor.java
+  function_name: blennosisRightlessness
+  line_number: '0'
+- entry_point_type: CROSSOVER_POINT
+  file_name: /tmp/tmpUhOmv3_ss_testcase/src/src/main/java/org/elasticsearch/index/store/distributor/AbstractDistributor.java
+  function_name: blennosisRightlessness
+  line_number: '0'
